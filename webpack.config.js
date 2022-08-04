@@ -1,10 +1,12 @@
-
+require("dotenv/config");
 const path = require("path");
 const webpack = require("webpack");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 module.exports = {
     entry: "./src/index.js",
-    mode: "development",
+    mode: isDevelopment ? "development" : "production",
     module: {
         rules: [
             {
@@ -26,10 +28,11 @@ module.exports = {
         filename: "bundle.js",
     },
     devServer: {
+        hot: true,
         contentBase: path.join(__dirname, "app/"),
-        port: 3000,
-        publicPath: "http://localhost:3000/dist/",
+        port: process.env.DEV_PORT,
+        publicPath: `http://localhost:${process.env.DEV_PORT}/dist/`,
         hotOnly: true,
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [new webpack.HotModuleReplacementPlugin(),isDevelopment && new ReactRefreshWebpackPlugin()].filter(Boolean),
 };

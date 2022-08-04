@@ -36,7 +36,6 @@
         "no-param-reassign": "error",
         "no-self-compare": "error",
         "no-void": "error",
-        "one-var": "error",
         "quotes": ["warn", "double"],
         "semi": "error",
         "strict": "error",
