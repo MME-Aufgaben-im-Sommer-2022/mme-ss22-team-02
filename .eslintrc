@@ -3,7 +3,7 @@
         "sourceType": "module",
         "ecmaVersion": "latest"
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "rules":
     {
         "block-scoped-var": "error",
