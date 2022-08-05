@@ -40,7 +40,8 @@
         "semi": "error",
         "strict": "error",
         "vars-on-top": "error",
-        "yoda": "error"
+        "yoda": "error",
+        "react/prop-types": "off"
     },
     "env":
     {
