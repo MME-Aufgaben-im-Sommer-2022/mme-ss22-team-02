@@ -17,8 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm-watch",
     "runDevelopementServer": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
-    "buildDeploy": "npm run build && node build_for_deployment.js",
+    "buildNoDeploy": "webpack --mode production",
+    "build": "npm run buildNoDeploy && node build_for_deployment.js",
     "check": "eslint src/",
     "prebuild": "npm install && npm run check"
   },
