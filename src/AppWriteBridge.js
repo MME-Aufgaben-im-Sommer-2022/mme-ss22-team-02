@@ -9,12 +9,13 @@ client
     .setProject("62ed077218d8330d121c") // Your project ID
 ;
 
-const bridge = new AppWriteBridge();
-const AppwriteContext = React.createContext(bridge);
-
 class AppWriteBridge {
 
 }
+
+const bridge = new AppWriteBridge();
+const AppwriteContext = React.createContext(bridge);
+
 
 export function WithAppWrite({children}) {
     return <AppwriteContext.Provider value={bridge}>
