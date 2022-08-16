@@ -17,13 +17,31 @@ export class AppWriteBridge extends Observable {
     _user = null;
     _preparing = true;
     /**
-     * @return {{} | null}
+     * @return {{
+     *     $id: string,
+     *     $createdAt: number,
+     *     $updatedAt: number,
+     *     name: string,
+     *     registration: number,
+     *     status: boolean,
+     *     passwordUpdate: number,
+     *     email: string,
+     *     phone: string,
+     *     emailVerification: boolean,
+     *     phoneVerification: boolean,
+     *     prefs: {[key: string]: any},
+     * } | null}
      */
     getUser() {
         return this._user;
     }
 
     async doLogin() {
+        this.emit("authorizeChange");
+    }
+    async doLogout() {
+        await account.deleteSessions();
+        this._user = null;
         this.emit("authorizeChange");
     }
 
