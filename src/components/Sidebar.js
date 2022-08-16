@@ -4,6 +4,8 @@ import Divider from "@mui/material/Divider";
 import { styled, useTheme } from '@mui/material/styles';
 import { IconButton } from "@mui/material";
 import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useIsLight, useToggleLight } from "../ThemeSystem";
 const drawerWidth = 240;
 
 
@@ -35,10 +37,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   );
 
 export default function Sidebar(props){
-
+    const toggleLight = useToggleLight();
+    const light = useIsLight();
     return <Drawer variant={"permanent"} open={false}>
-        <IconButton >
-            <LightModeIcon />
+        <IconButton onClick={() => toggleLight()} >
+            {!light ? <LightModeIcon /> : <DarkModeIcon/>}
         </IconButton>
         <Divider/>
         {props.children}
