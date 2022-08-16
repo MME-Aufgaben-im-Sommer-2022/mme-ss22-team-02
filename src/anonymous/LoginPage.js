@@ -1,5 +1,7 @@
 import React from "react";
 import {useAppWrite} from "../AppWriteBridge";
+import Icon from "@mdi/react"
+import { mdiGoogle } from "@mdi/js"
 
 export function LoginPage() {
     const bridge = useAppWrite();
@@ -11,5 +13,6 @@ export function LoginPage() {
             bridge.doLogin();
         }
         }>Do it</button>
+        <Icon path={mdiGoogle} size={2}/> 
     </div>;
 }

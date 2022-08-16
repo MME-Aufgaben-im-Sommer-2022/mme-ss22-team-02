@@ -48,8 +48,12 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.10.0",
     "appwrite": "^9.0.1",
     "babel-preset-react-app": "^3.1.2",
     "eslint-plugin-react": "^7.30.1",

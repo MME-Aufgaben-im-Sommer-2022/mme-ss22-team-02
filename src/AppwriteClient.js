@@ -38,7 +38,7 @@ export class AppWriteBridge extends Observable {
     }
 
     async doLogin() {
-        account.createOAuth2Session("google")
+        account.createOAuth2Session("google", window.location.href, window.location.href)
     }
     async doLogout() {
         await account.deleteSessions();
