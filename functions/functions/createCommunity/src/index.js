@@ -61,9 +61,8 @@ module.exports = async function (req, res) {
         id = "community_" + uuidv4();
         try {
             await database.getCollection("community_" + id);
-            found = true;
         } catch (error) {
-            // ignored
+            found = true;
         }
     }
 
