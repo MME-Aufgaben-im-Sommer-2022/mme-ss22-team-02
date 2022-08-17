@@ -1,21 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./App.css";
 import {LoginPage} from "./anonymous/LoginPage";
 import {useAppWrite} from "./AppWriteBridge";
 import AuthenticatedPage from "./authenticated/AuthenticatedPage";
 import {useEvent} from "./utils/hooks";
-
+import Box from "@mui/material/Box";
 
 function Routing() {
     const bridge = useAppWrite();
     const [authorized, setAuthorized] = useState(bridge.getUser() !== null);
 
-
     useEvent(bridge, "authorizeChange", () => setAuthorized(bridge.getUser() !== null));
 
-
     return authorized ? <AuthenticatedPage/> : <LoginPage/>;
-
 }
 
 export default function App() {
@@ -24,5 +21,7 @@ export default function App() {
     const [preparing, setPreparing] = useState(bridge.isPreparing());
     useEvent(bridge, "prepared", () => setPreparing(bridge.isPreparing()));
 
-    return preparing ? <h1>Loading</h1> : <Routing/>;
+    return <Box sx={{backgroundColor: "background.paper", color: "text.primary", minWidth: "100vw", minHeight: "100vh"}}>
+        {preparing ? <h1>Loading</h1> : <Routing/>}
+    </Box>;
 }

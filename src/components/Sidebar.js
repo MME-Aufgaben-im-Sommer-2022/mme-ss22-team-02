@@ -9,7 +9,7 @@ import { useIsLight, useToggleLight } from "../ThemeSystem";
 const drawerWidth = 240;
 
 
-  
+
   const closedMixin = (theme) => ({
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -28,7 +28,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       flexShrink: 0,
       whiteSpace: 'nowrap',
       boxSizing: 'border-box',
-      
+
       ...(!open && {
         ...closedMixin(theme),
         '& .MuiDrawer-paper': closedMixin(theme),
@@ -45,8 +45,8 @@ export default function Sidebar(props){
         </IconButton>
         <Divider/>
         {props.children}
-    </Drawer>
+    </Drawer>;
 
-    
+
 
 }
