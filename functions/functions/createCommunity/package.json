@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "node-appwrite": "^7.0.0",
-    "uuid"
+    "uuid": "^8.3.2"
   }
 }

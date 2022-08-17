@@ -1,5 +1,5 @@
 const sdk = require("node-appwrite");
-const uuidv4 = require("uuid/v4")
+const uuidv4 = require("uuid/v4");
 /*
 'req' variable has:
 'headers' - object with request headers
