@@ -5,6 +5,7 @@ import {useAppWrite} from "./AppWriteBridge";
 import AuthenticatedPage from "./authenticated/AuthenticatedPage";
 import {useEvent} from "./utils/hooks";
 import Box from "@mui/material/Box";
+import LoadingScreen from "./utils/LoadingScreen";
 
 function Routing() {
     const bridge = useAppWrite();
@@ -22,6 +23,6 @@ export default function App() {
     useEvent(bridge, "prepared", () => setPreparing(bridge.isPreparing()));
 
     return <Box sx={{backgroundColor: "background.paper", color: "text.primary", minWidth: "100vw", minHeight: "100vh"}}>
-        {preparing ? <h1>Loading</h1> : <Routing/>}
+        {preparing ? <LoadingScreen label={"Preparing..."}/> : <Routing/>}
     </Box>;
 }

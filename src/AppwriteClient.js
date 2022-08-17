@@ -8,7 +8,7 @@ const account = new Account(client);
 client
     .setEndpoint("https://appwrite.software-engineering.education/v1") // Your API Endpoint
     .setProject("62ed077218d8330d121c") // Your project ID
-    
+
 ;
 
 
@@ -57,7 +57,9 @@ export class AppWriteBridge extends Observable {
         try {
             this._user = await account.get();
         } catch (e) {
+            // error ignored
         }
+
         this._preparing = false;
         this.emit("prepared");
     }
