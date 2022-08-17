@@ -23,6 +23,6 @@ export default function App() {
     useEvent(bridge, "prepared", () => setPreparing(bridge.isPreparing()));
 
     return <Box sx={{backgroundColor: "background.paper", color: "text.primary", minWidth: "100vw", minHeight: "100vh"}}>
-        {preparing ? <LoadingScreen label={"Preparing..."}/> : <Routing/>}
+        {preparing ? <div style={{height: "100vh"}}><LoadingScreen label={"Preparing..."}/></div> : <Routing/>}
     </Box>;
 }

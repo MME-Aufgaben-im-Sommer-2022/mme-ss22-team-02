@@ -68,7 +68,6 @@ export class AppWriteBridge extends Observable {
     }
 
     async prepare() {
-
         try {
             this._user = await account.get();
             console.log(this._user);

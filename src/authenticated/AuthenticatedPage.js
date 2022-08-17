@@ -3,6 +3,7 @@ import {useAppWrite} from "../AppWriteBridge";
 import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
 import {Avatar, List, ListItem, ListItemButton} from "@mui/material";
+import CommunityWrapper from "./CommunityWrapper";
 
 export default function AuthenticatedPage() {
 
@@ -58,8 +59,8 @@ export default function AuthenticatedPage() {
                 }
             </List>
         </Sidebar>
-        <Box component={"main"} sx={{flexGrow:1, minHeight: "100%"} }>
-            Hello {bridge.getUser().name}
+        <Box component={"main"} sx={{flexGrow:1, minHeight: "100vh"} }>
+            <CommunityWrapper key={activeCommunityId} communityId={activeCommunityId}/>
         </Box >
     </Box>;
 
