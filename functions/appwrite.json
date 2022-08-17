@@ -1,0 +1,21 @@
+{
+    "projectId": "62ed077218d8330d121c",
+    "projectName": "ShopForMe",
+    "functions": [
+        {
+            "$id": "createCommunity",
+            "name": "createCommunity",
+            "runtime": "node-16.0",
+            "path": "functions/createCommunity",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}
