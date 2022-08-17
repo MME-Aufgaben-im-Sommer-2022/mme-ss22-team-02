@@ -66,7 +66,7 @@ module.exports = async function (req, res) {
         }
     }
 
-    const userId = process.env["APPWRITE_FUNCTION_USER_ID"];
+    const userId = req.env["APPWRITE_FUNCTION_USER_ID"];
     const user = await users.get(userId);
     const team = await teams.create(id, id);
     await teams.createMembership(team.$id, user.email, ["owner"], 'https://shopforme.software-engineering.education');
