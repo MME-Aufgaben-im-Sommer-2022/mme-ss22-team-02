@@ -15,6 +15,23 @@ client
 
 export class AppWriteBridge extends Observable {
 
+    /**
+     * @type {{
+     *     $id: string,
+     *     $createdAt: number,
+     *     $updatedAt: number,
+     *     name: string,
+     *     registration: number,
+     *     status: boolean,
+     *     passwordUpdate: number,
+     *     email: string,
+     *     phone: string,
+     *     emailVerification: boolean,
+     *     phoneVerification: boolean,
+     *     prefs: {[key: string]: any},
+     * }}
+     * @private
+     */
     _user = null;
     _preparing = true;
     /**
@@ -37,8 +54,8 @@ export class AppWriteBridge extends Observable {
         return this._user;
     }
 
-    async doLogin() {
-        account.createOAuth2Session("google", window.location.href, window.location.href)
+    async doOAuthLogin(type = "google", scopes) {
+        account.createOAuth2Session(type, window.location.href, window.location.href, scopes);
     }
     async doLogout() {
         await account.deleteSessions();
@@ -52,10 +69,9 @@ export class AppWriteBridge extends Observable {
 
     async prepare() {
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
         try {
             this._user = await account.get();
+            console.log(this._user);
         } catch (e) {
             // error ignored
         }

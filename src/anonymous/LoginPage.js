@@ -1,23 +1,66 @@
 import React from "react";
 import {useAppWrite} from "../AppWriteBridge";
 import Icon from "@mdi/react";
-import { mdiGoogle } from "@mdi/js";
+import {mdiFacebook, mdiGithub, mdiGitlab, mdiGoogle} from "@mdi/js";
 import Sidebar from "../components/Sidebar";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
+import {Container, IconButton, Typography} from "@mui/material";
+import "./LoginPage.css";
+import {useIsLight} from "../ThemeSystem";
+
+const methods = [
+    {
+        icon: mdiGoogle,
+        id: "google",
+        color: "#DB4437",
+    },
+    {
+        icon: mdiFacebook,
+        id: "facebook",
+        color: "#3b5998",
+    },
+    {
+        icon: mdiGithub,
+        id: "github",
+        color: "#282424",
+        scopes: ["read:user"],
+    },
+    {
+        icon: mdiGitlab,
+        id: "gitlab",
+        color: "#fc6d26",
+    },
+];
 
 export function LoginPage() {
     const bridge = useAppWrite();
-    return <Box sx={{display:"flex"}}>
-    <Sidebar></Sidebar>
-    <Box component={"main"} sx={{flexGrow:1} }>
-        <h1>
-            Login
-        </h1>
-        <button onClick={() => {
-            bridge.doLogin();
-        }
-        }>Do it</button>
-        <Icon path={mdiGoogle} size={2}/>
-    </Box ></Box>;
+    const light = useIsLight();
+
+    return (
+        <Box sx={{display:"flex", minHeight: "100%"}}>
+            <Sidebar></Sidebar>
+            <Box component={"main"} sx={{flexGrow:1, minHeight: "100%"} }>
+                <Container className={"login-wrapper"}>
+                    <Typography variant={"h1"} sx={{textDecoration: !light ? "underline" : "none"}}>
+                        ShopForMe
+                    </Typography>
+                    <Typography style={{marginTop: 150}} variant={"h2"}>
+                        Login with
+                    </Typography>
+                    <div>
+                        {
+                            methods.map(method => (
+                                <IconButton className={"login-method"} key={method.id} sx={{backgroundColor: method.color}} onClick={() => {
+                                    bridge.doOAuthLogin(method.id, method.scopes);
+                                }}>
+                                    <Icon path={method.icon} size={2}/>
+                                </IconButton>
+                            ))
+                        }
+                    </div>
+                </Container>
+            </Box >
+        </Box>
+    );
 }
 
