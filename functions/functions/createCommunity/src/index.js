@@ -47,15 +47,14 @@ module.exports = async function (req, res) {
 
     const name = data.name;
     const color = data.color;
-
-    if(!name || typeof name !== "string" || name.length < 3) {
+    if(!name || typeof name !== "string" || name.length < 3 || name.length > 255) {
         return res.send("invalid name", 400);
     }
     if(!color || colors.indexOf(color) === -1) {
         return res.send("invalid color", 400);
     }
 
-    let free = false;
+    let found = false;
     let id = "";
 
     while(!found) {
