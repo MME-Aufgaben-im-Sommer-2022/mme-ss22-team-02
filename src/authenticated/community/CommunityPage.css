@@ -1,0 +1,14 @@
+.main-page {
+    display: flex;
+    flex-direction: row;
+}
+
+.community-body {
+    flex-grow: 1;
+}
+
+.community-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
