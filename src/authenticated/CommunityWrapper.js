@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Community} from "../Community";
+import {Community} from "../model/Community";
 import LoadingScreen from "../utils/LoadingScreen";
 import {useEvent} from "../utils/hooks";
 import CommunityPage from "./community/CommunityPage";

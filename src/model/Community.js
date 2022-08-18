@@ -1,4 +1,4 @@
-import {Observable} from "./utils/Observable";
+import {Observable} from "../utils/Observable";
 
 export class Community extends Observable {
     _id;

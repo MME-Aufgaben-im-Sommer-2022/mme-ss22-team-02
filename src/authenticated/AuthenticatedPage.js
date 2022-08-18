@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
 import {Avatar, List, ListItem, ListItemButton} from "@mui/material";
 import CommunityWrapper from "./CommunityWrapper";
+import AddIcon from '@mui/icons-material/Add';
 
 export default function AuthenticatedPage() {
 
@@ -56,7 +57,26 @@ export default function AuthenticatedPage() {
                             </ListItemButton>
                         </ListItem>
                     ))
+
                 }
+                <ListItem disablePadding sx={{ display: "block" }}>
+                            <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"blue"})}
+                                sx={{
+                                    minHeight: 48,
+                                    justifyContent: "center",
+                                    px: 2.5,
+                                }}
+                            >
+                                <AddIcon                                  
+                                  sx={{
+                                        minWidth: 0,
+                                        mr: "auto",
+                                        justifyContent: "center",
+                                    }}
+                                />
+                                
+                            </ListItemButton>
+                        </ListItem>
             </List>
         </Sidebar>
         <Box component={"main"} sx={{flexGrow:1, minHeight: "100vh"} }>

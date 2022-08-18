@@ -1,8 +1,9 @@
-import {Account, Client} from "appwrite";
+import {Account, Client,Functions} from "appwrite";
 import {Observable} from "./utils/Observable";
 
 const client = new Client();
 const account = new Account(client);
+const functions = new Functions(client);
 
 // Init your Web SDK
 client
@@ -78,5 +79,11 @@ export class AppWriteBridge extends Observable {
         this._preparing = false;
         this.emit("prepared");
     }
+
+    async createCommunity({name, color}){
+        const response = await functions.createExecution("createCommunity", JSON.stringify({color,name}));
+        console.log(response);
+    }
+   
 
 }

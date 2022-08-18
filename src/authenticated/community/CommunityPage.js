@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * @param community {require(../../Community)}
+ * @param community {require(../../model/Community)}
  * @return {JSX.Element}
  * @constructor
  */
