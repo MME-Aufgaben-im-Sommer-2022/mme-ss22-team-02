@@ -18,28 +18,28 @@ const colors = [
     "blue",
     "indigo",
     "orange",
-    "green"
-]
+    "green",
+];
 
 module.exports = async function (req, res) {
     const client = new sdk.Client();
-    
+
     // You can remove services you don't use
-    let database = new sdk.Databases(client, '62fd29769e269ac3a8f6');
-    let databaseUsers = new sdk.Databases(client, '62fd3cc3cafb6e2dc42f');
+    let database = new sdk.Databases(client, "62fd29769e269ac3a8f6");
+    let databaseUsers = new sdk.Databases(client, "62fd3cc3cafb6e2dc42f");
     let teams = new sdk.Teams(client);
     let users = new sdk.Users(client);
-    
+
     if (
-        !req.env['APPWRITE_FUNCTION_ENDPOINT'] ||
-        !req.env['APPWRITE_FUNCTION_API_KEY']
+        !req.env["APPWRITE_FUNCTION_ENDPOINT"] ||
+        !req.env["APPWRITE_FUNCTION_API_KEY"]
     ) {
         console.warn("Environment variables are not set. Function cannot use Appwrite SDK.");
     } else {
         client
-        .setEndpoint(req.env['APPWRITE_FUNCTION_ENDPOINT'])
-        .setProject(req.env['APPWRITE_FUNCTION_PROJECT_ID'])
-        .setKey(req.env['APPWRITE_FUNCTION_API_KEY'])
+        .setEndpoint(req.env["APPWRITE_FUNCTION_ENDPOINT"])
+        .setProject(req.env["APPWRITE_FUNCTION_PROJECT_ID"])
+        .setKey(req.env["APPWRITE_FUNCTION_API_KEY"])
         .setSelfSigned(true);
     }
 
@@ -69,18 +69,18 @@ module.exports = async function (req, res) {
     const userId = req.env["APPWRITE_FUNCTION_USER_ID"];
     const user = await users.get(userId);
     const team = await teams.create(id, id);
-    await teams.createMembership(team.$id, user.email, ["owner"], 'https://shopforme.software-engineering.education');
+    await teams.createMembership(team.$id, user.email, ["owner"], "https://shopforme.software-engineering.education");
 
-    const community = await databases.createCollection(id, id, 'document', ["team:"+team.$id], []);
+    const community = await databases.createCollection(id, id, "document", ["team:"+team.$id], []);
 
     await databases.createDocument("62fd29ae5cdfa08b3b28", community.$id, {
         name,
-        color
-    }, ["team:"+team.$id], [])
+        color,
+    }, ["team:"+team.$id], []);
     // databaseUsers.listDocuments('62fd3d15c3274b29defc', [
     //     Query.equal('userId', userId)
     // ]);
-    await databaseUsers.createDocument('62fd3d15c3274b29defc', 'unique()', {userId: userId, communityId: community.$id}, ["user:"+userId], []);
+    await databaseUsers.createDocument("62fd3d15c3274b29defc", "unique()", {userId: userId, communityId: community.$id}, ["user:"+userId], []);
     res.json({
         communityId: community.$id,
     });

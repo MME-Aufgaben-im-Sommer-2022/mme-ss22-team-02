@@ -81,9 +81,9 @@ export class AppWriteBridge extends Observable {
     }
 
     async createCommunity({name, color}){
-        const response = await functions.createExecution("createCommunity", JSON.stringify({color,name}));
+        const response = await functions.createExecution("createCommunity", JSON.stringify({color,name}), false);
         console.log(response);
     }
-   
+
 
 }
