@@ -6,6 +6,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@mui/material/Button';
+import { TextField } from '@mui/material';
 
 function RequestForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
@@ -32,37 +33,26 @@ function RequestForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='request-form'>
-      {props.edit ? (
-        <>
-          <input
-            placeholder='Update your article'
-            value={input}
-            onChange={handleChange}
-            name='text'
-            ref={inputRef}
-            className='request-input edit'
-          />
-          <Button onClick={handleSubmit} className='request-button edit'>
-            Update
-          </Button>
-        </>
-      ) : (
-        <>
-          <input
-            placeholder='Article'
-            value={input}
-            onChange={handleChange}
-            name='text'
-            className='article-input'
-            ref={inputRef}
-          />
-          <Button onClick={handleSubmit} className='article-button'>
-            Add
-          </Button>
-        </>
-      )}
-    </form>
+  <form onSubmit={handleSubmit} className='request-form'> 
+  {props.edit ? (<>
+    <TextField style={{marginTop: 10}} size="small" variant="outlined" color='primary' placeholder='Update your article'
+    value={input} onChange={handleChange} name='text' ref={inputRef}
+    />
+    <Button style={{marginTop: 12}} onClick={handleSubmit}>
+      Update
+    </Button>
+    </>
+    ) : (
+    <>
+    <TextField style={{marginTop: 10}} size="small" variant="outlined" color='primary' placeholder='Article'
+    value={input} onChange={handleChange} name='text' ref={inputRef}
+    />
+    <Button style={{marginTop: 12}} onClick={handleSubmit}>
+      Add
+    </Button>
+    </>
+    )}
+  </form>
   );
 }
 
