@@ -3,10 +3,16 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Input } from "@mui/material";
+import ArticleList from "../../requests/ArticleList";
 
 
 const RequestModal = ({open, onClose, title, subTitle}) => {
+
+    const addRequest = () => {
+        onClose();
+        //TODO: article texte übernehmen zum erstellen eines Requests
+    };
+
     const style = {
         position: 'absolute',
         top: '50%',
@@ -21,22 +27,20 @@ const RequestModal = ({open, onClose, title, subTitle}) => {
     return (
         <Modal open={open} onClose={onClose} >
             <Box sx={style}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Typography id="modal-title" variant="h6" component="h2">
                     New Request
                     {title}
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <Typography id="modal-description" sx={{ mt: 2 }}>
 
                     {subTitle}
                 </Typography>
-                <Box>
-                    <Input placeholder="Article"/>
-                    <Input placeholder="Article2"/>
-                    <Input placeholder="Article3"/>
-                </Box>
+                <div>
+                    <ArticleList />
+                </div>
                 <Box>
                     <Button variant={"contained"} onClick={onClose}>Cancel</Button>
-                    <Button variant={"contained"} onClick={onClose}>Next</Button>
+                    <Button variant={"contained"} onClick={addRequest}>Publish</Button>
                 </Box>
             </Box>
         </Modal>

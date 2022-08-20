@@ -1,0 +1,69 @@
+/*function taken from briancodex (2020) https://github.com/briancodex/react-todo-app-v1
+  Source-Code: https://github.com/briancodex/react-todo-app-v1/blob/master/src/components/TodoForm.js
+  on 20.08.2022
+  Code was adjusted */
+  
+
+import React, { useState, useEffect, useRef } from 'react';
+import Button from '@mui/material/Button';
+
+function RequestForm(props) {
+  const [input, setInput] = useState(props.edit ? props.edit.value : '');
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
+  const handleChange = e => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    props.onSubmit({
+        id: Math.floor(Math.random() * 10000),
+        text: input,
+      });
+
+    setInput('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className='request-form'>
+      {props.edit ? (
+        <>
+          <input
+            placeholder='Update your article'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            ref={inputRef}
+            className='request-input edit'
+          />
+          <Button onClick={handleSubmit} className='request-button edit'>
+            Update
+          </Button>
+        </>
+      ) : (
+        <>
+          <input
+            placeholder='Article'
+            value={input}
+            onChange={handleChange}
+            name='text'
+            className='article-input'
+            ref={inputRef}
+          />
+          <Button onClick={handleSubmit} className='article-button'>
+            Add
+          </Button>
+        </>
+      )}
+    </form>
+  );
+}
+
+export default RequestForm;
