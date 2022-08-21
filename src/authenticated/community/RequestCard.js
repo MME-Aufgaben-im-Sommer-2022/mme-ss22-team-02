@@ -1,12 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ChatIcon from '@mui/icons-material/Chat';
+import OpenRequestModal from "../../components/modal/OpenRequestModal";
+
 
 
 
 
 export default function RequestCard({id,test,date,className}){
 
+    const [open, setOpen] = useState(false);
+    const showAllItems = () => {
+        setOpen(true);
+    };
         return (
         <Card className={className}>
             <CardHeader
@@ -17,7 +23,7 @@ export default function RequestCard({id,test,date,className}){
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <ChatIcon />
                     </IconButton>
                 }
                 title= {id}
@@ -27,9 +33,11 @@ export default function RequestCard({id,test,date,className}){
                 <Typography variant="body2" color="text.secondary">
                     {test}
                 </Typography>
+
+                <Button size="small" onClick={showAllItems}>all Products</Button>
+                <OpenRequestModal open={open} onClose={() => setOpen(false)} />
             </CardContent>
             <CardActions disableSpacing>
-
                 <Button variant="outlined">Bring ich mit</Button>
             </CardActions>
         </Card>
