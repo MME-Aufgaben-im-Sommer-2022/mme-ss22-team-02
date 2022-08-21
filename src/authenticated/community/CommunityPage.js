@@ -16,7 +16,7 @@ function TabPanel({value, index, children}){
     </div>;
 }
 /**
- * @param community {require(../../model/Community)}
+ * @param community {import('../../model/Community').Community}
  * @return {JSX.Element}
  * @constructor
  */

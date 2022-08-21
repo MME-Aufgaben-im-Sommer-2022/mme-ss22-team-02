@@ -3,6 +3,7 @@ import {Community} from "../model/Community";
 import LoadingScreen from "../utils/LoadingScreen";
 import {useEvent} from "../utils/hooks";
 import CommunityPage from "./community/CommunityPage";
+import {ProvideParentCommunity} from "../utils/context-utilities";
 
 /**
  * @param communityId
@@ -31,5 +32,7 @@ export default function CommunityWrapper({communityId}) {
         return <LoadingScreen/>;
     }
 
-    return <CommunityPage community={community}/>;
+    return <ProvideParentCommunity value={community}>
+        <CommunityPage community={community}/>
+    </ProvideParentCommunity>;
 }

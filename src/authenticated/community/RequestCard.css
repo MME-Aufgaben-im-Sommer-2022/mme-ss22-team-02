@@ -1,0 +1,9 @@
+.request-card {
+    display: flex;
+    flex-direction: column;
+}
+.request-card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

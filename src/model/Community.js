@@ -1,4 +1,5 @@
 import {Observable} from "../utils/Observable";
+import RequestData from "./RequestData";
 
 export class Community extends Observable {
     _id;
@@ -79,14 +80,14 @@ export class Community extends Observable {
 
     }
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * @param id
+     * @return {Promise<RequestData>}
+     */
+    async getRequestData(id) {
+        await new Promise(resolve => {
+            setTimeout(resolve, 1000);
+        });
+        return new RequestData(id);
+    }
 }

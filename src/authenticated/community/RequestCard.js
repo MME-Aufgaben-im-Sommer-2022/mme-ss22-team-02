@@ -2,19 +2,24 @@ import React, {useState} from "react";
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
 import ChatIcon from '@mui/icons-material/Chat';
 import OpenRequestModal from "../../components/modal/OpenRequestModal";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import "./RequestCard.css";
+import {Spacer} from "../../components/Spacer";
+import {useRequestData} from "../../utils/useRequestData";
+import LoadingScreen from "../../utils/LoadingScreen";
 
-
-
-
-
-export default function RequestCard({id,test,date,className}){
+export default function RequestCard({id, className}) {
 
     const [open, setOpen] = useState(false);
     const showAllItems = () => {
         setOpen(true);
     };
-        return (
-        <Card className={className}>
+
+    const requestData = useRequestData(id);
+
+    let body = <LoadingScreen/>;
+    if(requestData) {
+        body = <>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe">
@@ -27,22 +32,28 @@ export default function RequestCard({id,test,date,className}){
                     </IconButton>
                 }
                 title= {id}
-                subheader={date}
+                subheader={requestData.getDate().toString()}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    {test}
                 </Typography>
 
                 <Button size="small" onClick={showAllItems}>all Products</Button>
                 <OpenRequestModal open={open} onClose={() => setOpen(false)} />
             </CardContent>
-            <CardActions disableSpacing>
+
+            <Spacer/>
+
+            <CardActions className={"request-card-actions"}>
                 <Button variant="outlined">Bring ich mit</Button>
             </CardActions>
+        </>;
+    }
+
+    return (
+        <Card className={className + " request-card"}>
+            {body}
         </Card>
-        );
-
-
+    );
 
 }
