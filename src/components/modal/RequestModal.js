@@ -1,11 +1,10 @@
 import React from "react";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 import ArticleList from "../../requests/ArticleList";
-import Stack from '@mui/material/Stack';
-
+import Stack from "@mui/material/Stack";
 
 const RequestModal = ({open, onClose}) => {
 
@@ -15,14 +14,15 @@ const RequestModal = ({open, onClose}) => {
     };
 
     const style = {
-        position: 'absolute',
-        top: '40%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        position: "absolute",
+        top: "40%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         width: 400,
         height: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
+        bgcolor: "background.paper",
+        color: "text.primary",
+        border: "2px solid #000",
         boxShadow: 24,
         p: 4,
       };
