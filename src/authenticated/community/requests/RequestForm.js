@@ -35,7 +35,7 @@ function RequestForm(props) {
   return (
   <form onSubmit={handleSubmit} className='request-form'> 
   {props.edit ? (<>
-    <TextField style={{marginTop: 10}} size="small" variant="outlined" color='primary' placeholder='Update your article'
+    <TextField style={{marginTop: 10, width: 300}} size="small" variant="outlined" color='primary' placeholder='Update your article'
     value={input} onChange={handleChange} name='text' ref={inputRef}
     />
     <Button style={{marginTop: 12}} onClick={handleSubmit}>
@@ -44,7 +44,7 @@ function RequestForm(props) {
     </>
     ) : (
     <>
-    <TextField style={{marginTop: 10}} size="small" variant="outlined" color='primary' placeholder='Article'
+    <TextField style={{marginTop: 10, width: 350}} size="small" variant="outlined" color='primary' placeholder='Article'
     value={input} onChange={handleChange} name='text' ref={inputRef}
     />
     <Button style={{marginTop: 12}} onClick={handleSubmit}>

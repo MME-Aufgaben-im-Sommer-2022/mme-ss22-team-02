@@ -39,10 +39,10 @@ function ArticleList() {
 
   const style = {
     position: 'absolute',
-    top: '63%',
+    top: '60%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 350,
+    width: 425,
     height: 180,
     bgcolor: 'background.paper',
     p: 1,

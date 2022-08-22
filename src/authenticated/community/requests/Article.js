@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 const Article = ({ articles, removeArticle, updateArticle }) => {
   const [edit, setEdit] = useState({
@@ -31,9 +32,9 @@ const Article = ({ articles, removeArticle, updateArticle }) => {
   
   return articles.map((article, index) => (
     <div key={index}>
-      <Stack spacing={20} direction="row">
-        <Typography key={article.id}> {article.text}</Typography>
-        <Stack spacing={1} direction="row">
+      <Stack spacing={1} direction="row">
+        <Box key={article.id} sx={{width: 290, marginTop:0.75, overflow:"auto" }} > {article.text} </Box>
+        <div>
           <Button
           onClick={() => setEdit({ id: article.id, value: article.text })}
           >Edit</Button>
@@ -42,9 +43,9 @@ const Article = ({ articles, removeArticle, updateArticle }) => {
           >
             <DeleteIcon fontSize="inherit"/>
           </IconButton>
-        </Stack>
+        </div>
       </Stack>
-  </div>
+    </div>
   ));
 };
   
