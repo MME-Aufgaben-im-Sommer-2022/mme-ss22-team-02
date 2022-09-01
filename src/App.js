@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import "./App.css";
 import {LoginPage} from "./anonymous/LoginPage";
-import {useAppWrite} from "./AppWriteBridge";
+import {useApiClient} from "./ApiBridge";
 import AuthenticatedPage from "./authenticated/AuthenticatedPage";
 import {useEvent} from "./utils/hooks";
 import Box from "@mui/material/Box";
 import LoadingScreen from "./utils/LoadingScreen";
 
 function Routing() {
-    const bridge = useAppWrite();
+    const bridge = useApiClient();
     const [authorized, setAuthorized] = useState(bridge.getUser() !== null);
 
     useEvent(bridge, "authorizeChange", () => setAuthorized(bridge.getUser() !== null));
@@ -17,7 +17,7 @@ function Routing() {
 }
 
 export default function App() {
-    const bridge = useAppWrite();
+    const bridge = useApiClient();
 
     const [preparing, setPreparing] = useState(bridge.isPreparing());
     useEvent(bridge, "prepared", () => setPreparing(bridge.isPreparing()));

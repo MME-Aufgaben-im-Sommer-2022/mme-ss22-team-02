@@ -1,14 +1,14 @@
 import React from "react";
-import {useAppWrite} from "../AppWriteBridge";
+import {useApiClient} from "../ApiBridge";
 import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
 import {Avatar, List, ListItem, ListItemButton} from "@mui/material";
 import CommunityWrapper from "./CommunityWrapper";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 export default function AuthenticatedPage() {
 
-    const bridge = useAppWrite();
+    const bridge = useApiClient();
 
     const communities = [
         {
@@ -67,14 +67,14 @@ export default function AuthenticatedPage() {
                                     px: 2.5,
                                 }}
                             >
-                                <AddIcon                                  
+                                <AddIcon
                                   sx={{
                                         minWidth: 0,
                                         mr: "auto",
                                         justifyContent: "center",
                                     }}
                                 />
-                                
+
                             </ListItemButton>
                         </ListItem>
             </List>

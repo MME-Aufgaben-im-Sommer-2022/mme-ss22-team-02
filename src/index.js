@@ -2,7 +2,7 @@
 import React from "react";
 import CssBaseline from '@mui/material/CssBaseline';
 import App from "./App.js";
-import {WithAppWrite} from "./AppWriteBridge";
+import {WithApiClient} from "./ApiBridge";
 import { createRoot } from "react-dom/client";
 import ThemeSystem from "./ThemeSystem.js";
 
@@ -12,8 +12,8 @@ const root = createRoot(container);
 root.render(<React.StrictMode>
     <CssBaseline/>
     <ThemeSystem>
-        <WithAppWrite>
+        <WithApiClient>
             <App />
-        </WithAppWrite>
+        </WithApiClient>
     </ThemeSystem>
 </React.StrictMode>);

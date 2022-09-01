@@ -1,5 +1,5 @@
 import React from "react";
-import {useAppWrite} from "../AppWriteBridge";
+import {useApiClient} from "../ApiBridge";
 import Icon from "@mdi/react";
 import {mdiFacebook, mdiGithub, mdiGitlab, mdiGoogle} from "@mdi/js";
 import Sidebar from "../components/Sidebar";
@@ -33,7 +33,7 @@ const methods = [
 ];
 
 export function LoginPage() {
-    const bridge = useAppWrite();
+    const bridge = useApiClient();
     const light = useIsLight();
 
     return (

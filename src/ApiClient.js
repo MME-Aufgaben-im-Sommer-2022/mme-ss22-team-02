@@ -14,7 +14,7 @@ client
 
 
 
-export class AppWriteBridge extends Observable {
+export class ApiClient extends Observable {
 
     /**
      * @type {{
