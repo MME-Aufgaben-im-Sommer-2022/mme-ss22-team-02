@@ -24,11 +24,6 @@ const methods = [
         id: "github",
         color: "#282424",
     },
-    {
-        icon: mdiGitlab,
-        id: "gitlab",
-        color: "#fc6d26",
-    },
 ];
 
 export function LoginPage() {

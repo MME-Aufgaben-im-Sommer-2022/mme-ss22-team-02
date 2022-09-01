@@ -3,7 +3,7 @@ import {Observable} from "./utils/Observable";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
+import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,13 +16,29 @@ const firebaseConfig = {
     storageBucket: "shopforme.appspot.com",
     messagingSenderId: "344438797329",
     appId: "1:344438797329:web:0d76e8fded64cc07122db0",
-    measurementId: "G-KTBPVSX65Y"
+    measurementId: "G-KTBPVSX65Y",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const authentication = getAuth(app);
+
+getRedirectResult(authentication)
+    .then((result) => {
+        const user = result.user;
+        console.log("Got", user);
+    }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    if(errorCode === "auth/account-exists-with-different-credential") {
+        // TODO show error account email already registered for another provider
+    }
+
+    console.log("Err", errorMessage, errorCode);
+});
 
 export class ApiClient extends Observable {
 
@@ -55,8 +71,20 @@ export class ApiClient extends Observable {
 
     async doOAuthLogin(type = "google") {
         let provider;
-        if(type === "google") {
-            provider = new GoogleAuthProvider();
+        switch (type) {
+            case "google":
+                provider = new GoogleAuthProvider();
+                break;
+            case "github":
+                provider = new GithubAuthProvider();
+                break;
+            case "gitlab":
+                provider = new GoogleAuthProvider();
+                break;
+            case "facebook":
+                provider = new FacebookAuthProvider();
+                break;
+            default: break;
         }
 
         await signInWithRedirect(authentication, provider);
