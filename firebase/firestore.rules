@@ -1,8 +1,16 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /communities/{community} {
+
+      // Allow the user to read community data if member of community
+      allow read: if request.auth != null && exists(/databases/$(database)/documents/communities/$(community)/$(request.auth.uid));
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
   }
+
+
 }
