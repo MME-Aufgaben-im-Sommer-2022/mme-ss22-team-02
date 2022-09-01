@@ -1,65 +1,68 @@
-import {Account, Client,Functions} from "appwrite";
 import {Observable} from "./utils/Observable";
 
-const client = new Client();
-const account = new Account(client);
-const functions = new Functions(client);
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, GoogleAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Init your Web SDK
-client
-    .setEndpoint("https://appwrite.software-engineering.education/v1") // Your API Endpoint
-    .setProject("62ed077218d8330d121c") // Your project ID
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyDrCBQqtoIo0jg2-r8nLSGchkUfCh6eWvo",
+    authDomain: "shopforme-f6d18.firebaseapp.com",
+    projectId: "shopforme",
+    storageBucket: "shopforme.appspot.com",
+    messagingSenderId: "344438797329",
+    appId: "1:344438797329:web:0d76e8fded64cc07122db0",
+    measurementId: "G-KTBPVSX65Y"
+};
 
-;
-
-
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const authentication = getAuth(app);
 
 export class ApiClient extends Observable {
 
     /**
-     * @type {{
-     *     $id: string,
-     *     $createdAt: number,
-     *     $updatedAt: number,
-     *     name: string,
-     *     registration: number,
-     *     status: boolean,
-     *     passwordUpdate: number,
-     *     email: string,
-     *     phone: string,
-     *     emailVerification: boolean,
-     *     phoneVerification: boolean,
-     *     prefs: {[key: string]: any},
-     * }}
+     * @type {import("firebase/auth").User | null}
      * @private
      */
     _user = null;
+    _userChecked = false;
     _preparing = true;
+
+    constructor() {
+        super();
+
+        // Subscribe to any authentication changes
+        onAuthStateChanged(authentication, (user) => {
+            this._user = user;
+            this._userChecked = true;
+            this.emit("authorizeChange");
+        });
+    }
+
+
     /**
-     * @return {{
-     *     $id: string,
-     *     $createdAt: number,
-     *     $updatedAt: number,
-     *     name: string,
-     *     registration: number,
-     *     status: boolean,
-     *     passwordUpdate: number,
-     *     email: string,
-     *     phone: string,
-     *     emailVerification: boolean,
-     *     phoneVerification: boolean,
-     *     prefs: {[key: string]: any},
-     * } | null}
+     * @return {import("firebase/auth").User | null}
      */
     getUser() {
         return this._user;
     }
 
-    async doOAuthLogin(type = "google", scopes) {
-        account.createOAuth2Session(type, window.location.href, window.location.href, scopes);
+    async doOAuthLogin(type = "google") {
+        let provider;
+        if(type === "google") {
+            provider = new GoogleAuthProvider();
+        }
+
+        await signInWithRedirect(authentication, provider);
     }
     async doLogout() {
-        await account.deleteSessions();
+        await authentication.signOut();
         this._user = null;
         this.emit("authorizeChange");
     }
@@ -69,11 +72,8 @@ export class ApiClient extends Observable {
     }
 
     async prepare() {
-        try {
-            this._user = await account.get();
-            console.log(this._user);
-        } catch (e) {
-            // error ignored
+        while (!this._userChecked) {
+            await new Promise(resolve => setTimeout(resolve, 100));
         }
 
         this._preparing = false;
@@ -81,8 +81,8 @@ export class ApiClient extends Observable {
     }
 
     async createCommunity({name, color}){
-        const response = await functions.createExecution("createCommunity", JSON.stringify({color,name}), false);
-        console.log(response);
+        // const response = await functions.createExecution("createCommunity", JSON.stringify({color,name}), false);
+        // console.log(response);
     }
 
 

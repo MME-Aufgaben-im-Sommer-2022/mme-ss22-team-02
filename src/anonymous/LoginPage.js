@@ -23,7 +23,6 @@ const methods = [
         icon: mdiGithub,
         id: "github",
         color: "#282424",
-        scopes: ["read:user"],
     },
     {
         icon: mdiGitlab,

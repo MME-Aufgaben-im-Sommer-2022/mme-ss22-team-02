@@ -25,7 +25,7 @@ export default function OpenRequests (){
         <Grid container columns={{ xs: 4, sm: 8, md: 12 }}>
         {
             requests.map((value) => (
-                <Grid key={value.id} xs={4} md={3}>
+                <Grid key={value.id} item xs={4} md={3}>
                     <RequestCard className={"grid-card"} {...value}/>
                 </Grid>
             ))
