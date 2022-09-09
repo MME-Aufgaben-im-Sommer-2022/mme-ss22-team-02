@@ -4,7 +4,7 @@ service cloud.firestore {
     match /communities/{community} {
 
       // Allow the user to read community data if member of community
-      allow read: if request.auth != null && exists(/databases/$(database)/documents/communities/$(community)/$(request.auth.uid));
+      allow read: if request.auth != null && exists(/databases/$(database)/documents/communities/$(community)/members/$(request.auth.uid));
     }
 
     match /{document=**} {
