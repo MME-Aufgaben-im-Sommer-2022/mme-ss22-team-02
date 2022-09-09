@@ -2,7 +2,7 @@ import {Observable} from "./utils/Observable";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,8 +21,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const authentication = getAuth(app);
+const functions = getFunctions(app);
 
 getRedirectResult(authentication)
     .then((result) => {
@@ -109,9 +109,10 @@ export class ApiClient extends Observable {
     }
 
     async createCommunity({name, color}){
-        // const response = await functions.createExecution("createCommunity", JSON.stringify({color,name}), false);
-        // console.log(response);
+        const createCommunity = httpsCallable(functions, "createCommunity");
+
+        const response = await createCommunity({color,name});
+
+        console.log("Received", response.data);
     }
-
-
 }
