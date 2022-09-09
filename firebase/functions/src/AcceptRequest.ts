@@ -32,7 +32,7 @@ export default functions.https.onCall(async (data, context) => {
 
     if (requestData.state !== "OPEN" ) {
         return {
-            error: "Request is not open",
+            error: "Anfrage ist nicht offen",
         };
     }
 
