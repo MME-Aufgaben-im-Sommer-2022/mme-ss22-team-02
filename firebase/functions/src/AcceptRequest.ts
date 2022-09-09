@@ -18,7 +18,7 @@ export default functions.https.onCall(async (data, context) => {
 
     if (typeof requestId !== "string") return;
     if (typeof communityId !== "string") return;
-
+    if (communityId.indexOf("/") !== -1) return;
 
     const firestore = FirebaseAdmin.firestore();
 
