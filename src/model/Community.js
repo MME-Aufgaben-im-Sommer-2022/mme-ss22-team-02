@@ -28,55 +28,23 @@ export class Community extends Observable {
         this.emit("loaded");
     }
 
-    getCommunityID() {
 
-    }
-    getMemberList() {
 
-    }
-    getMemberCounter() {
-
-    }
-    viewMemberDetails() {
-
-    }
-    openChat() {
+    async getOpenRequests() {
 
     }
 
-
-
-
-
-    //requests
-    displayOpenRequests() {
+    async addNewRequest() {
 
     }
-    addNewRequest() {
+    async acceptRequest() {
 
     }
-    acceptRequest() {
-
-    }
-    viewMyRequests() {
-
-    }
-    viewAcceptedRequests() {
+    async getMyRequests() {
 
     }
 
-
-
-
-    //suchoptionen
-
-    showAllFilters() {
-
-    }
-    addFilter() {
-
-    }
-    searchByAttribute(...attribute) {
+    async getMyAcceptedRequests() {
 
     }
 
