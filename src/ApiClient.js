@@ -115,4 +115,48 @@ export class ApiClient extends Observable {
 
         console.log("Received", response.data);
     }
+
+    async joinCommunity({firestore, communityDoc, communitySnap, communityData}){
+        const createCommunity = httpsCallable(functions, "createCommunity");
+
+        const response = await createCommunity({firestore, communityDoc, communitySnap, communityData});
+
+        console.log("Received", response.data);
+    }
+
+    async leaveCommunity({firestore, communityDoc, communitySnap, communityData}){
+        const createCommunity = httpsCallable(functions, "createCommunity");
+
+        const response = await createCommunity({firestore, communityDoc, communitySnap, communityData});
+
+        console.log("Received", response.data);
+    }
+
+
+    async createRequest({communityId, tags, products}){
+        const createRequest = httpsCallable(functions, "createRequest");
+
+        const response = await createCommunity({communityId, tags, products});
+
+        console.log("Received", response.data);
+    }
+
+    async acceptRequest({communityId, requestId}){
+        const acceptRequest = httpsCallable(functions, "acceptRequest");
+
+        const response = await acceptRequest({communityId, requestId});
+
+        console.log("Received", response.data);
+    }
+
+    async closeRequest({communityId, requestId}){
+        const createRequest = httpsCallable(functions, "createRequest");
+
+        const response = await createCommunity({communityId, requestId});
+
+        console.log("Received", response.data);
+    }
+
+    
+
 }
