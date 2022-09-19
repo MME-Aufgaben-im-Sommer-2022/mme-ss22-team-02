@@ -13,8 +13,8 @@ export function useEvent(observable, event, callback) {
     }, [observable, event, callback]);
 }
 
-export function useSubscription(subscribe, deps = []) {
-    const [data, setData] = useState([]);
+export function useSubscription(initial, subscribe, deps = []) {
+    const [data, setData] = useState(initial);
 
     useEffect(() => {
         const subscription = subscribe((communities) => setData(communities));

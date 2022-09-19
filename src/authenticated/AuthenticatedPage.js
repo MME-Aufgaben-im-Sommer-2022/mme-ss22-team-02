@@ -12,9 +12,16 @@ export default function AuthenticatedPage() {
 
     const bridge = useApiClient();
 
-    const communities = useSubscription(bridge.subscribeJoinedCommunities);
+    const communities = useSubscription([], bridge.subscribeJoinedCommunities);
 
-    const [activeCommunityId, setActiveCommunityId] = useState("1");
+    let [activeCommunityId, setActiveCommunityId] = useState(null);
+
+    if(!activeCommunityId || communities.indexOf(activeCommunityId) === -1) {
+        activeCommunityId = null; // Only temp for this frame
+        if(communities.length > 0) {
+            setActiveCommunityId(communities[0]);
+        }
+    }
 
     return <Box sx={{display:"flex", minHeight: "100%"}}>
         <Sidebar>
@@ -48,7 +55,7 @@ export default function AuthenticatedPage() {
             </List>
         </Sidebar>
         <Box component={"main"} sx={{flexGrow:1, minHeight: "100vh"} }>
-            <CommunityWrapper key={activeCommunityId} communityId={activeCommunityId}/>
+            {!!activeCommunityId && <CommunityWrapper key={activeCommunityId} communityId={activeCommunityId}/>}
         </Box >
     </Box>;
 

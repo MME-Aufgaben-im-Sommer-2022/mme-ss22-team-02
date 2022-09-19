@@ -4,15 +4,17 @@ import LoadingScreen from "../utils/LoadingScreen";
 import {useEvent} from "../utils/hooks";
 import CommunityPage from "./community/CommunityPage";
 import {ProvideParentCommunity} from "../utils/context-utilities";
+import {useApiClient} from "../ApiBridge";
 
 /**
  * @param communityId
  * @return {null | Community}
  */
 function useCommunity(communityId) {
+    const bridge = useApiClient();
     const [community, setCommunity] = useState(null);
     useEffect(() => {
-        const com = new Community(communityId);
+        const com = new Community(communityId, bridge);
         // noinspection JSIgnoredPromiseFromCall
         com.loadBaseData();
         setCommunity(com);

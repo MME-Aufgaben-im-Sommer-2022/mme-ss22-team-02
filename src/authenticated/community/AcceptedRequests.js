@@ -1,14 +1,13 @@
 import React from "react";
-import RequestCard from "./RequestCard";
-import "./CommunityPage.css";
-import {Container, Grid} from "@mui/material";
 import {useParentCommunity} from "../../utils/context-utilities";
 import {useSubscription} from "../../utils/hooks";
 import {EmptyPlaceholder} from "../../components/EmptyPlaceholder";
+import {Container, Grid} from "@mui/material";
+import RequestCard from "./RequestCard";
 
-export default function OpenRequests (){
+export default function MyRequests(){
     const community = useParentCommunity();
-    const requests = useSubscription([], community.subscribeOpenRequests.bind(community));
+    const requests = useSubscription([], community.subscribeAcceptedRequests.bind(community));
 
     if(requests.length === 0) {
         return <EmptyPlaceholder/>;
@@ -26,5 +25,4 @@ export default function OpenRequests (){
             }
         </Grid>
     </Container>;
-
 }
