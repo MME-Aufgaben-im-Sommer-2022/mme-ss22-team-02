@@ -1,6 +1,5 @@
 import * as functions from "firebase-functions";
-import FirebaseAdmin from "./FirebaseAdmin";
-import {arrayUnion} from "firebase/firestore";
+import FirebaseAdmin, {arrayUnion} from "./FirebaseAdmin";
 
 export default functions.https.onCall(async (data, context) => {
     if (!context.auth) return;

@@ -1,6 +1,5 @@
 import * as functions from "firebase-functions";
-import FirebaseAdmin from "./FirebaseAdmin";
-import {arrayUnion} from "firebase/firestore";
+import FirebaseAdmin, {arrayUnion} from "./FirebaseAdmin";
 
 export default functions.https.onCall(async (data, context) => {
     if (!context.auth) return;
@@ -54,7 +53,7 @@ export default functions.https.onCall(async (data, context) => {
 
     await firestore.collection("users")
         .doc(context.auth.uid).set({
-            communities: arrayUnion([communityDoc.id]),
+            communities: arrayUnion(communityDoc.id),
         }, {
             merge: true,
         });

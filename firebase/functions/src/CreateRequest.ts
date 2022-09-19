@@ -18,6 +18,7 @@ export default functions.https.onCall(async (data, context) => {
     if (typeof products["filter"] !== "function") return;
 
     products = products
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .filter((product: any) => typeof product === "string") as string[];
 
     if (products.length === 0) return;

@@ -60,7 +60,7 @@ export default function AuthenticatedPage() {
 
                 }
                 <ListItem disablePadding sx={{ display: "block" }}>
-                            <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"blue"})}
+                            <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"#fcba03"})}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: "center",
