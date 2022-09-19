@@ -1,6 +1,7 @@
 import {Avatar, ListItem, ListItemButton} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {useApiClient} from "../ApiBridge";
+import {getReadableColor} from "../utils/colors";
 
 export default function CommunityButton({communityId, active, activate}) {
 
@@ -29,6 +30,7 @@ export default function CommunityButton({communityId, active, activate}) {
             <Avatar
                 sx={{
                     bgcolor: communityData.color,
+                    color: getReadableColor(communityData.color),
                     minWidth: 0,
                     mr: "auto",
                     justifyContent: "center",
