@@ -4,11 +4,8 @@ import {Observable} from "./utils/Observable";
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
     apiKey: "AIzaSyDrCBQqtoIo0jg2-r8nLSGchkUfCh6eWvo",
     authDomain: "shopforme-f6d18.firebaseapp.com",
@@ -117,17 +114,17 @@ export class ApiClient extends Observable {
     }
 
     async joinCommunity({firestore, communityDoc, communitySnap, communityData}){
-        const createCommunity = httpsCallable(functions, "createCommunity");
+        const joinCommunity = httpsCallable(functions, "joinCommunity");
 
-        const response = await createCommunity({firestore, communityDoc, communitySnap, communityData});
+        const response = await joinCommunity({firestore, communityDoc, communitySnap, communityData});
 
         console.log("Received", response.data);
     }
 
     async leaveCommunity({firestore, communityDoc, communitySnap, communityData}){
-        const createCommunity = httpsCallable(functions, "createCommunity");
+        const leaveCommunity = httpsCallable(functions, "leaveCommunity");
 
-        const response = await createCommunity({firestore, communityDoc, communitySnap, communityData});
+        const response = await leaveCommunity({firestore, communityDoc, communitySnap, communityData});
 
         console.log("Received", response.data);
     }
@@ -136,7 +133,7 @@ export class ApiClient extends Observable {
     async createRequest({communityId, tags, products}){
         const createRequest = httpsCallable(functions, "createRequest");
 
-        const response = await createCommunity({communityId, tags, products});
+        const response = await createRequest({communityId, tags, products});
 
         console.log("Received", response.data);
     }
@@ -150,13 +147,13 @@ export class ApiClient extends Observable {
     }
 
     async closeRequest({communityId, requestId}){
-        const createRequest = httpsCallable(functions, "createRequest");
+        const closeRequest = httpsCallable(functions, "closeRequest");
 
-        const response = await createCommunity({communityId, requestId});
+        const response = await closeRequest({communityId, requestId});
 
         console.log("Received", response.data);
     }
 
-    
+
 
 }
