@@ -19,7 +19,7 @@
     "runDevelopementServer": "webpack-dev-server --mode development",
     "buildNoDeploy": "webpack --mode production",
     "build": "npm run buildNoDeploy && node build_for_deployment.js",
-    "check": "eslint src/",
+    "check": "eslint --fix src/",
     "prebuild": "npm install && npm run check"
   },
   "author": "",

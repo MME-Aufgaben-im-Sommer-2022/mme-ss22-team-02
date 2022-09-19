@@ -3,33 +3,32 @@
   on 20.08.2022
   Code was adjusted */
 
-import React, { useState } from 'react';
-import RequestForm from './RequestForm';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+import React, { useState } from "react";
+import RequestForm from "./RequestForm";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import { Box } from "@mui/material";
 
 const Article = ({ articles, removeArticle, updateArticle }) => {
   const [edit, setEdit] = useState({
     id: null,
-    value: '',
+    value: "",
   });
-  
+
   const submitUpdate = value => {
     updateArticle(edit.id, value);
     setEdit({
       id: null,
-      value: '',
+      value: "",
     });
   };
-  
+
   if (edit.id) {
     return <RequestForm edit={edit} onSubmit={submitUpdate} />;
   }
-  
+
   return articles.map((article, index) => (
     <div key={index}>
       <Stack spacing={1} direction="row">
@@ -48,5 +47,5 @@ const Article = ({ articles, removeArticle, updateArticle }) => {
     </div>
   ));
 };
-  
+
 export default Article;

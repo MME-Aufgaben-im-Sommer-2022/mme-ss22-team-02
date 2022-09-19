@@ -3,7 +3,6 @@ import RequestCard from "./RequestCard";
 import "./CommunityPage.css";
 import {Container, Grid} from "@mui/material";
 
-
 export default function OpenRequests (){
     const requests = [
         {

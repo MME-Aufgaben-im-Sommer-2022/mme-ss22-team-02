@@ -7,7 +7,7 @@ import OpenRequests from "./OpenRequests";
 function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,
-        'aria-controls': `simple-tab panel-${index}`,
+        "aria-controls": `simple-tab panel-${index}`,
     };
 }
 function TabPanel({value, index, children}){
@@ -20,13 +20,12 @@ function TabPanel({value, index, children}){
  * @return {JSX.Element}
  * @constructor
  */
-export default function CommunityPage({community}) {
+export default function CommunityPage() {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
 
     return <div className={"main-page"}>
         <div className={"community-body"}>

@@ -5,7 +5,6 @@ export class Community extends Observable {
     _id;
     _loaded = false;
 
-
     constructor(id) {
         super();
         this._id = id;
@@ -28,24 +27,22 @@ export class Community extends Observable {
         this.emit("loaded");
     }
 
-
-
     async getOpenRequests() {
-
+// asd
     }
 
     async addNewRequest() {
-
+// asd
     }
     async acceptRequest() {
-
+// asd
     }
     async getMyRequests() {
-
+// asd
     }
 
     async getMyAcceptedRequests() {
-
+// asd
     }
 
     /**

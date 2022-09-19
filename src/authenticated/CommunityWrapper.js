@@ -33,6 +33,6 @@ export default function CommunityWrapper({communityId}) {
     }
 
     return <ProvideParentCommunity value={community}>
-        <CommunityPage community={community}/>
+        <CommunityPage/>
     </ProvideParentCommunity>;
 }

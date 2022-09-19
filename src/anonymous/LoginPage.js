@@ -1,7 +1,7 @@
 import React from "react";
 import {useApiClient} from "../ApiBridge";
 import Icon from "@mdi/react";
-import {mdiFacebook, mdiGithub, mdiGitlab, mdiGoogle} from "@mdi/js";
+import {mdiFacebook, mdiGithub, mdiGoogle} from "@mdi/js";
 import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
 import {Container, IconButton, Typography} from "@mui/material";

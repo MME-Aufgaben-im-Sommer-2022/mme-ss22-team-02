@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Avatar, Button, Card, CardActions, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
-import ChatIcon from '@mui/icons-material/Chat';
+import ChatIcon from "@mui/icons-material/Chat";
 import OpenRequestModal from "../../components/modal/OpenRequestModal";
 import "./RequestCard.css";
 import {Spacer} from "../../components/Spacer";

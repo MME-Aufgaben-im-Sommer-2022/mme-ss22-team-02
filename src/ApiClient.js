@@ -60,7 +60,6 @@ export class ApiClient extends Observable {
         });
     }
 
-
     /**
      * @return {import("firebase/auth").User | null}
      */
@@ -130,7 +129,6 @@ export class ApiClient extends Observable {
 
         console.log("Received", response.data);
     }
-
 
     async createRequest({communityId, tags, products}){
         const createRequest = httpsCallable(functions, "createRequest");

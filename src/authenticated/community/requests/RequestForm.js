@@ -2,14 +2,13 @@
   Source-Code: https://github.com/briancodex/react-todo-app-v1/blob/master/src/components/TodoForm.js
   on 20.08.2022
   Code was adjusted */
-  
 
-import React, { useState, useEffect, useRef } from 'react';
-import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
+import React, { useState, useEffect, useRef } from "react";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 function RequestForm(props) {
-  const [input, setInput] = useState(props.edit ? props.edit.value : '');
+  const [input, setInput] = useState(props.edit ? props.edit.value : "");
 
   const inputRef = useRef(null);
 
@@ -29,7 +28,7 @@ function RequestForm(props) {
         text: input,
       });
 
-    setInput('');
+    setInput("");
   };
 
   return (
