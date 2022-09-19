@@ -66,4 +66,10 @@ export class Community extends Observable {
     subscribeOpenRequests(callback) {
         return this._apiClient.subscribeOpenRequests(this._id, callback);
     }
+    subscribeOwnedRequests(callback) {
+        return this._apiClient.subscribeOwnedRequests(this._id, callback);
+    }
+    subscribeAcceptedRequests(callback) {
+        return this._apiClient.subscribeAcceptedRequests(this._id, callback);
+    }
 }

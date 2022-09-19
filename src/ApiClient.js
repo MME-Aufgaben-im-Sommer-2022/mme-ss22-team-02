@@ -177,6 +177,36 @@ export class ApiClient extends Observable {
 
         return new Subscription(unsub);
     }
+    subscribeOwnedRequests(communityId, callback) {
+        const q = query(collection(firestore, "communities", communityId, "requests"), where("owner", "==", authentication.currentUser.uid));
+        const unsub = onSnapshot(q, (snapshot) => {
+            const requests = [];
+            snapshot.forEach((doc) => {
+                requests.push({
+                    id: doc.id,
+                    ...doc.data(),
+                });
+            });
+            callback(requests);
+        });
+
+        return new Subscription(unsub);
+    }
+    subscribeAcceptedRequests(communityId, callback) {
+        const q = query(collection(firestore, "communities", communityId, "requests"), where("bringer", "==", authentication.currentUser.uid));
+        const unsub = onSnapshot(q, (snapshot) => {
+            const requests = [];
+            snapshot.forEach((doc) => {
+                requests.push({
+                    id: doc.id,
+                    ...doc.data(),
+                });
+            });
+            callback(requests);
+        });
+
+        return new Subscription(unsub);
+    }
 
     async getCommunityData(communityId) {
         return await getDoc(doc(firestore, "communities", communityId)).then(value => value.data());

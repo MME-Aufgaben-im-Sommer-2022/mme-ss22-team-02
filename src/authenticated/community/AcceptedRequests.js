@@ -7,7 +7,7 @@ import RequestCard from "./RequestCard";
 
 export default function MyRequests(){
     const community = useParentCommunity();
-    const requests = useSubscription([], community.subscribeOwnedRequests.bind(community));
+    const requests = useSubscription([], community.subscribeAcceptedRequests.bind(community));
 
     if(requests.length === 0) {
         return <EmptyPlaceholder/>;
