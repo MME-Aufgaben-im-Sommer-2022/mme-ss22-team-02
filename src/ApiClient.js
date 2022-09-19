@@ -3,10 +3,9 @@ import {Observable} from "./utils/Observable";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { getFirestore, onSnapshot, doc } from "firebase/firestore";
+import { getFirestore, onSnapshot, doc, getDoc } from "firebase/firestore";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 import Subscription from "./utils/Subscription";
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrCBQqtoIo0jg2-r8nLSGchkUfCh6eWvo",
@@ -164,5 +163,9 @@ export class ApiClient extends Observable {
         });
 
         return new Subscription(unsub);
+    }
+
+    async getCommunityData(communityId) {
+        return await getDoc(doc(firestore, "communities", communityId)).then(value => value.data());
     }
 }

@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export function useEvent(observable, event, callback) {
     useEffect(() => {
@@ -11,4 +11,15 @@ export function useEvent(observable, event, callback) {
             observable.off(event, callback);
         };
     }, [observable, event, callback]);
+}
+
+export function useSubscription(subscribe, deps = []) {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const subscription = subscribe((communities) => setData(communities));
+        return () => subscription.cancel();
+    }, deps);
+
+    return data;
 }

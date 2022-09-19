@@ -2,23 +2,19 @@ import React, {useEffect, useState} from "react";
 import {useApiClient} from "../ApiBridge";
 import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
-import {Avatar, List, ListItem, ListItemButton} from "@mui/material";
+import {List, ListItem, ListItemButton} from "@mui/material";
 import CommunityWrapper from "./CommunityWrapper";
 import AddIcon from "@mui/icons-material/Add";
 import CommunityButton from "./CommunityButton";
+import {useSubscription} from "../utils/hooks";
 
 export default function AuthenticatedPage() {
 
     const bridge = useApiClient();
 
-    const [communities, setCommunities] = useState([]);
+    const communities = useSubscription(bridge.subscribeJoinedCommunities);
 
-    useEffect(() => {
-        const subscription = bridge.subscribeJoinedCommunities((communities) => setCommunities(communities));
-        return () => subscription.cancel();
-    }, []);
-
-    const activeCommunityId = "1";
+    const [activeCommunityId, setActiveCommunityId] = useState("1");
 
     return <Box sx={{display:"flex", minHeight: "100%"}}>
         <Sidebar>
@@ -28,6 +24,7 @@ export default function AuthenticatedPage() {
                         key={"community_"+communityId}
                         communityId={communityId}
                         active={communityId === activeCommunityId}
+                        activate={() => setActiveCommunityId(communityId)}
                     />)
                 }
                 <ListItem disablePadding sx={{ display: "block" }}>
