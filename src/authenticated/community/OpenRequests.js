@@ -2,22 +2,12 @@ import React from "react";
 import RequestCard from "./RequestCard";
 import "./CommunityPage.css";
 import {Container, Grid} from "@mui/material";
+import {useParentCommunity} from "../../utils/context-utilities";
+import {useSubscription} from "../../utils/hooks";
 
 export default function OpenRequests (){
-    const requests = [
-        {
-            id: "1",
-        },
-        {
-            id: "2",
-        },
-        {
-            id: "3",
-        },
-        {
-            id: "4",
-        },
-    ];
+    const community = useParentCommunity();
+    const requests = useSubscription([], community.subscribeOpenRequests.bind(community));
 
     // noinspection JSValidateTypes
     return<Container>

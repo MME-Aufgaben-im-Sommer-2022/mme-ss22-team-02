@@ -3,7 +3,7 @@ import {Observable} from "./utils/Observable";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { getFirestore, onSnapshot, doc, getDoc } from "firebase/firestore";
+import { getFirestore, onSnapshot, doc, getDoc, query, collection, where } from "firebase/firestore";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 import Subscription from "./utils/Subscription";
 
@@ -158,6 +158,21 @@ export class ApiClient extends Observable {
 
         const unsub = onSnapshot(doc(firestore, "users", authentication.currentUser.uid), (snapshot) => {
             callback(snapshot.data().communities);
+        });
+
+        return new Subscription(unsub);
+    }
+    subscribeOpenRequests(communityId, callback) {
+        const q = query(collection(firestore, "communities", communityId, "requests"), where("state", "==", "OPEN"));
+        const unsub = onSnapshot(q, (snapshot) => {
+            const requests = [];
+            snapshot.forEach((doc) => {
+                requests.push({
+                    id: doc.id,
+                    ...doc.data(),
+                });
+            });
+            callback(requests);
         });
 
         return new Subscription(unsub);

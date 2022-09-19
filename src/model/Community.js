@@ -5,9 +5,16 @@ export class Community extends Observable {
     _id;
     _loaded = false;
 
-    constructor(id) {
+    /**
+     * @type {import("../ApiClient").ApiClient}
+     * @private
+     */
+    _apiClient = null;
+
+    constructor(id, apiClient) {
         super();
         this._id = id;
+        this._apiClient = apiClient;
     }
 
     getId() {
@@ -54,5 +61,9 @@ export class Community extends Observable {
             setTimeout(resolve, 1000);
         });
         return new RequestData(id);
+    }
+
+    subscribeOpenRequests(callback) {
+        return this._apiClient.subscribeOpenRequests(this._id, callback);
     }
 }

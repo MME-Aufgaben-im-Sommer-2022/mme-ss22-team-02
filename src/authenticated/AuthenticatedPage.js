@@ -12,7 +12,7 @@ export default function AuthenticatedPage() {
 
     const bridge = useApiClient();
 
-    const communities = useSubscription(bridge.subscribeJoinedCommunities);
+    const communities = useSubscription([], bridge.subscribeJoinedCommunities);
 
     const [activeCommunityId, setActiveCommunityId] = useState("1");
 
