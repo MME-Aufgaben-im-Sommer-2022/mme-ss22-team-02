@@ -1,32 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useApiClient} from "../ApiBridge";
 import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
 import {Avatar, List, ListItem, ListItemButton} from "@mui/material";
 import CommunityWrapper from "./CommunityWrapper";
 import AddIcon from "@mui/icons-material/Add";
+import CommunityButton from "./CommunityButton";
 
 export default function AuthenticatedPage() {
 
     const bridge = useApiClient();
 
-    const communities = [
-        {
-            id: "1",
-            shortName: "test",
-            color: "orange",
-        },
-        {
-            id: "2",
-            shortName: "test",
-            color: "purple",
-        },
-        {
-            id: "3",
-            shortName: "test",
-            color: "green",
-        },
-    ];
+    const [communities, setCommunities] = useState([]);
+
+    useEffect(() => {
+        const subscription = bridge.subscribeJoinedCommunities((communities) => setCommunities(communities));
+        return () => subscription.cancel();
+    }, []);
 
     const activeCommunityId = "1";
 
@@ -34,30 +24,11 @@ export default function AuthenticatedPage() {
         <Sidebar>
             <List>
                 {
-                    communities.map((community) => (
-                        <ListItem key={"community_"+community.id} disablePadding sx={{ display: "block" }}>
-                            <ListItemButton
-                                selected={community.id === activeCommunityId}
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: "center",
-                                    px: 2.5,
-                                }}
-                            >
-                                <Avatar
-                                    sx={{
-                                        bgcolor: community.color,
-                                        minWidth: 0,
-                                        mr: "auto",
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    {community.shortName}
-                                </Avatar>
-                            </ListItemButton>
-                        </ListItem>
-                    ))
-
+                    communities.map((communityId) => <CommunityButton
+                        key={"community_"+communityId}
+                        communityId={communityId}
+                        active={communityId === activeCommunityId}
+                    />)
                 }
                 <ListItem disablePadding sx={{ display: "block" }}>
                             <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"#fcba03"})}

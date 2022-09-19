@@ -3,7 +3,9 @@ import {Observable} from "./utils/Observable";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { getFirestore, onSnapshot, doc } from "firebase/firestore";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
+import Subscription from "./utils/Subscription";
 
 
 const firebaseConfig = {
@@ -20,6 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const authentication = getAuth(app);
 const functions = getFunctions(app);
+const firestore = getFirestore(app);
 
 getRedirectResult(authentication)
     .then((result) => {
@@ -154,6 +157,12 @@ export class ApiClient extends Observable {
         console.log("Received", response.data);
     }
 
+    subscribeJoinedCommunities(callback) {
 
+        const unsub = onSnapshot(doc(firestore, "users", authentication.currentUser.uid), (snapshot) => {
+            callback(snapshot.data().communities);
+        });
 
+        return new Subscription(unsub);
+    }
 }

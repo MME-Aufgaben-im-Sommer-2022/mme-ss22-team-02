@@ -10,6 +10,13 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
     }
+
+    match /users/{userId} {
+
+      // Allow the user to read community data if member of community
+      allow read: if request.auth != null && request.auth.uid == userId;
+    }
+
   }
 
 
