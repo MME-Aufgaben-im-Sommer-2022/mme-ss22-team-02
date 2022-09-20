@@ -6,11 +6,24 @@ import "./RequestCard.css";
 import {Spacer} from "../../components/Spacer";
 import {useRequestData} from "../../utils/useRequestData";
 import LoadingScreen from "../../utils/LoadingScreen";
+import { usePromise } from "../../utils/hooks";
+import { useApiClient } from "../../ApiBridge";
+/**
+ * 
+ * @param {Date} date 
+ */
+function formatDate(date){
+    const now = new Date();
+    now.getTime();
+
+    return "test";
+}
 
 export default function RequestCard(value) {
 
     const{id, className} = value;
     const listProducts = value.products;
+    const bridge = useApiClient();
 
     const [open, setOpen] = useState(false);
     const showAllItems = () => {
@@ -18,6 +31,8 @@ export default function RequestCard(value) {
     };
 
     const requestData = useRequestData(id);
+
+    const owner = usePromise(() => bridge.getUserCache().get(value.owner));
 
     const style = {
         overflowY:"scroll",
@@ -29,7 +44,7 @@ export default function RequestCard(value) {
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe">
-                        R
+                        {owner ? <img src={owner.profilePicture}/> : "?"}
                     </Avatar>
                 }
                 action={
@@ -37,8 +52,8 @@ export default function RequestCard(value) {
                         <ChatIcon />
                     </IconButton>
                 }
-                title= {id}
-                subheader={requestData.getDate().toString()}
+                title= {owner?.name || ""}
+                subheader={formatDate(requestData.getDate())}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
