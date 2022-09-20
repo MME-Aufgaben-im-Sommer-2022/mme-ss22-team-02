@@ -6,6 +6,7 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { getFirestore, onSnapshot, doc, getDoc, query, collection, where } from "firebase/firestore";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 import Subscription from "./utils/Subscription";
+import {UserCache} from "./UserCache";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrCBQqtoIo0jg2-r8nLSGchkUfCh6eWvo",
@@ -48,6 +49,7 @@ export class ApiClient extends Observable {
     _user = null;
     _userChecked = false;
     _preparing = true;
+    _cache;
 
     constructor() {
         super();
@@ -58,6 +60,7 @@ export class ApiClient extends Observable {
             this._userChecked = true;
             this.emit("authorizeChange");
         });
+        this._cache = new UserCache(this);
     }
 
     /**
@@ -65,6 +68,12 @@ export class ApiClient extends Observable {
      */
     getUser() {
         return this._user;
+    }
+    /**
+     * @return {import("./UserCache").UserCache}
+     */
+    getUserCache() {
+        return this._cache;
     }
 
     async doOAuthLogin(type = "google") {
