@@ -42,15 +42,24 @@ export class Community extends Observable {
     }
 
     async acceptRequest(requestId) {
-// asd
+        await this._apiClient.acceptRequest({
+            communityId: this._id,
+            requestId,
+        });
     }
 
     async closeRequest(requestId) {
-// asd
+        await this._apiClient.closeRequest({
+            communityId: this._id,
+            requestId,
+        });
     }
 
     async leaveRequest(requestId) {
-// asd
+        await this._apiClient.leaveRequest({
+            communityId: this._id,
+            requestId,
+        });
     }
 
     subscribeOpenRequests(callback) {
