@@ -140,10 +140,7 @@ export class ApiClient extends Observable {
 
     async acceptRequest({communityId, requestId}){
         const acceptRequest = httpsCallable(functions, "acceptRequest");
-
-        const response = await acceptRequest({communityId, requestId});
-
-        console.log("Received", response.data);
+        await acceptRequest({communityId, requestId});
     }
 
     async closeRequest({communityId, requestId}){

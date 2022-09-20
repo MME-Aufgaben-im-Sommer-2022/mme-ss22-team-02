@@ -3,31 +3,22 @@
   on 20.08.2022
   Code was adjusted */
 
-import React, { useState } from "react";
+import React from "react";
 import Article from "./Article";
 import RequestForm from "./RequestForm";
 import Box from "@mui/material/Box";
+import CheckIcon from "@mui/icons-material/Check";
 
-function ArticleList() {
-  const [articles, setArticles] = useState([]);
+function ArticleList({articles, setArticles}) {
 
   const addArticle = article => {
-    if (!article.text || /^\s*$/.test(article.text)) {
-      return;
-    }
-
     const newArticles = [article, ...articles];
 
     setArticles(newArticles);
-    console.log(...articles);
   };
 
-  const updateArticle = (articleId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-
-    setArticles(prev => prev.map(item => (item.id === articleId ? newValue : item)));
+  const updateArticle = (articleId, text) => {
+    setArticles(prev => prev.map(item => (item.id === articleId ? {...item, text} : item)));
   };
 
   const removeArticle = id => {
@@ -50,13 +41,16 @@ function ArticleList() {
 
   return (
     <>
-      <RequestForm onSubmit={addArticle} />
+      <RequestForm placeholder={"Wünsch dir was"} onSubmit={addArticle} confirmationLabel={<CheckIcon/>} confirmationSettings={{variant: "contained", color: "success"}}/>
       <Box sx={style}>
-        <Article
-        articles={articles}
-        removeArticle={removeArticle}
-        updateArticle={updateArticle}
-        />
+        {
+          articles.map((article, index) => <Article
+              key={index}
+              article={article}
+              removeArticle={removeArticle}
+              updateArticle={updateArticle}
+          />)
+        }
       </Box>
     </>
   );

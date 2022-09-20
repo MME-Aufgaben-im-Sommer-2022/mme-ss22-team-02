@@ -1,58 +1,62 @@
-/*function taken from briancodex (2020) https://github.com/briancodex/react-todo-app-v1
-  Source-Code: https://github.com/briancodex/react-todo-app-v1/blob/master/src/components/TodoForm.js
-  on 20.08.2022
-  Code was adjusted */
 
-import React, { useState, useEffect, useRef } from "react";
+
+import React, {useState, useEffect, useRef, useMemo} from "react";
 import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
+import {Stack, TextField} from "@mui/material";
 
-function RequestForm(props) {
-  const [input, setInput] = useState(props.edit ? props.edit.value : "");
+function RequestForm({value, onSubmit, size, placeholder, confirmationLabel, confirmationSettings}) {
+    const [input, setInput] = useState(value ? value : "");
 
-  const inputRef = useRef(null);
+    const inputWidth = size || 350;
+    const placeholderValue = placeholder || "Article";
+    const confirmationLabelValue = confirmationLabel || "Add";
 
-  useEffect(() => {
-    inputRef.current.focus();
-  });
+    const inputRef = useRef(null);
 
-  const handleChange = e => {
-    setInput(e.target.value);
-  };
+    useEffect(() => {
+        inputRef.current.focus();
+    });
 
-  const handleSubmit = e => {
-    e.preventDefault();
+    const handleChange = e => {
+        setInput(e.target.value);
+    };
+    const valid = useMemo(() => input && !/^\s*$/.test(input), [input]);
 
-    props.onSubmit({
-        id: Math.floor(Math.random() * 10000),
-        text: input,
-      });
+    const handleSubmit = e => {
+        e.preventDefault();
 
-    setInput("");
-  };
+        if(!valid) {
+            return;
+        }
 
-  return (
-  <form onSubmit={handleSubmit} className='request-form'> 
-  {props.edit ? (<>
-    <TextField style={{marginTop: 10, width: 300}} size="small" variant="outlined" color='primary' placeholder='Update your article'
-    value={input} onChange={handleChange} name='text' ref={inputRef}
-    />
-    <Button style={{marginTop: 12}} onClick={handleSubmit}>
-      Update
-    </Button>
-    </>
-    ) : (
-    <>
-    <TextField style={{marginTop: 10, width: 350}} size="small" variant="outlined" color='primary' placeholder='Article'
-    value={input} onChange={handleChange} name='text' ref={inputRef}
-    />
-    <Button style={{marginTop: 12}} onClick={handleSubmit}>
-      Add
-    </Button>
-    </>
-    )}
-  </form>
-  );
+        onSubmit({
+            id: Math.floor(Math.random() * 10000),
+            text: input,
+        });
+
+        setInput("");
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className='request-form'>
+            <Stack spacing={1} direction="row" style={{paddingTop: 10}}>
+                <TextField
+                    style={{width: inputWidth}}
+                    size="small" variant="outlined"
+                    color='primary'
+                    placeholder={placeholderValue}
+                    value={input}
+                    onChange={handleChange}
+                    name='text'
+                    ref={inputRef}
+                />
+                <Button disabled={!valid} onClick={handleSubmit} {...confirmationSettings}>
+                    {confirmationLabelValue}
+                </Button>
+                <Button disabled={true}>{/*Just here for spacing*/}</Button>
+            </Stack>
+        </form>
+    );
 }
 
 export default RequestForm;

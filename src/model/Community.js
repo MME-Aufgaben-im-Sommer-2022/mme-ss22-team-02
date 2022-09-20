@@ -38,8 +38,12 @@ export class Community extends Observable {
 // asd
     }
 
-    async addNewRequest() {
-// asd
+    async addNewRequest({products, tags}) {
+        await this._apiClient.createRequest({
+            communityId: this._id,
+            tags,
+            products: products,
+        });
     }
     async acceptRequest() {
 // asd
