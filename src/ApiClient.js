@@ -218,4 +218,8 @@ export class ApiClient extends Observable {
     async getCommunityData(communityId) {
         return await getDoc(doc(firestore, "communities", communityId)).then(value => value.data());
     }
+
+    async getProfile(userId) {
+        return await getDoc(doc(firestore, "profiles", userId)).then(value => value.data());
+    }
 }

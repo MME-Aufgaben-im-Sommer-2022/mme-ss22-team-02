@@ -5,14 +5,18 @@ export class UserCache {
      */
     _apiClient;
 
+    _cache = {};
+
     constructor(apiClient) {
         this._apiClient = apiClient;
     }
 
     async get(userId) {
-        return {
-            name: "Peter",
-            profilePicture: "https://avatars.dicebear.com/api/bottts/peter.svg",
-        };
+        if(this._cache[userId]) {
+            return this._cache[userId];
+        }
+
+        this._cache[userId] = await this._apiClient.getProfile(userId);
+        return this._cache[userId];
     }
 }
