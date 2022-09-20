@@ -1,5 +1,4 @@
 import {Observable} from "../utils/Observable";
-import RequestData from "./RequestData";
 
 export class Community extends Observable {
     _id;
@@ -34,10 +33,6 @@ export class Community extends Observable {
         this.emit("loaded");
     }
 
-    async getOpenRequests() {
-// asd
-    }
-
     async addNewRequest({products, tags}) {
         await this._apiClient.createRequest({
             communityId: this._id,
@@ -45,14 +40,16 @@ export class Community extends Observable {
             products: products,
         });
     }
-    async acceptRequest() {
-// asd
-    }
-    async getMyRequests() {
+
+    async acceptRequest(requestId) {
 // asd
     }
 
-    async getMyAcceptedRequests() {
+    async closeRequest(requestId) {
+// asd
+    }
+
+    async leaveRequest(requestId) {
 // asd
     }
 
