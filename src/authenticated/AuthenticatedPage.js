@@ -35,23 +35,23 @@ export default function AuthenticatedPage() {
                     />)
                 }
                 <ListItem disablePadding sx={{ display: "block" }}>
-                            <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"#fcba03"})}
-                                sx={{
-                                    minHeight: 48,
-                                    justifyContent: "center",
-                                    px: 2.5,
-                                }}
-                            >
-                                <AddIcon
-                                  sx={{
-                                        minWidth: 0,
-                                        mr: "auto",
-                                        justifyContent: "center",
-                                    }}
-                                />
+                    <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"#fcba03"})}
+                        sx={{
+                            minHeight: 48,
+                            justifyContent: "center",
+                            px: 2.5,
+                        }}
+                    >
+                        <AddIcon
+                          sx={{
+                                minWidth: 0,
+                                mr: "auto",
+                                justifyContent: "center",
+                            }}
+                        />
 
-                            </ListItemButton>
-                        </ListItem>
+                    </ListItemButton>
+                </ListItem>
             </List>
         </Sidebar>
         <Box component={"main"} sx={{flexGrow:1, minHeight: "100vh"} }>
