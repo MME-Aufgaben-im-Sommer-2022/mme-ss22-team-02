@@ -4,25 +4,20 @@ import ChatIcon from "@mui/icons-material/Chat";
 import OpenRequestModal from "../../components/modal/OpenRequestModal";
 import "./RequestCard.css";
 import {Spacer} from "../../components/Spacer";
-import {useRequestData} from "../../utils/useRequestData";
-import LoadingScreen from "../../utils/LoadingScreen";
 import { usePromise } from "../../utils/hooks";
 import { useApiClient } from "../../ApiBridge";
 /**
- * 
- * @param {Date} date 
+ *
+ * @param {Date} date
  */
 function formatDate(date){
-    const now = new Date();
-    now.getTime();
 
-    return "test";
+    return `${date.getHours()}:${date.getMinutes()} ${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`;
 }
 
 export default function RequestCard(value) {
 
-    const{id, className} = value;
-    const listProducts = value.products;
+    const{className, products, createdAt} = value;
     const bridge = useApiClient();
 
     const [open, setOpen] = useState(false);
@@ -30,7 +25,6 @@ export default function RequestCard(value) {
         setOpen(true);
     };
 
-    const requestData = useRequestData(id);
 
     const owner = usePromise(() => bridge.getUserCache().get(value.owner));
 
@@ -38,9 +32,8 @@ export default function RequestCard(value) {
         overflowY:"scroll",
       };
 
-    let body = <LoadingScreen/>;
-    if(requestData) {
-        body = <>
+    return (
+        <Card className={className + " request-card"}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe">
@@ -53,7 +46,7 @@ export default function RequestCard(value) {
                     </IconButton>
                 }
                 title= {owner?.name || ""}
-                subheader={formatDate(requestData.getDate())}
+                subheader={formatDate(createdAt.toDate())}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -61,7 +54,7 @@ export default function RequestCard(value) {
 
                 <Box sx={style}>
                     {
-                        listProducts.map(listProduct => (
+                        products.map(listProduct => (
                             <li key={listProduct} className="list-products" >
                                 {listProduct}
                             </li>
@@ -78,12 +71,6 @@ export default function RequestCard(value) {
             <CardActions className={"request-card-actions"}>
                 <Button variant="outlined">Bring ich mit</Button>
             </CardActions>
-        </>;
-    }
-
-    return (
-        <Card className={className + " request-card"}>
-            {body}
         </Card>
     );
 

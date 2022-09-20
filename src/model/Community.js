@@ -56,17 +56,6 @@ export class Community extends Observable {
 // asd
     }
 
-    /**
-     * @param id
-     * @return {Promise<RequestData>}
-     */
-    async getRequestData(id) {
-        await new Promise(resolve => {
-            setTimeout(resolve, 1000);
-        });
-        return new RequestData(id);
-    }
-
     subscribeOpenRequests(callback) {
         return this._apiClient.subscribeOpenRequests(this._id, callback);
     }
