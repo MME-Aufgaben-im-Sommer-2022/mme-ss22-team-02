@@ -164,6 +164,7 @@ export class ApiClient extends Observable {
         const unsub = onSnapshot(q, (snapshot) => {
             const requests = [];
             snapshot.forEach((doc) => {
+                console.log(doc);
                 requests.push({
                     id: doc.id,
                     ...doc.data(),
