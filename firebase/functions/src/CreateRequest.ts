@@ -53,6 +53,7 @@ export default functions.https.onCall(async (data, context) => {
             products,
             state: "OPEN",
             tags,
+            createdAt: new Date(),
         });
 
     return {

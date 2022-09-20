@@ -6,6 +6,7 @@ type Request = {
     state: "OPEN" | "IN_PROGRESS",
     tags: {
         [name: string]: "string"
-    }
+    },
+    createdAt: Date,
 }
 ```
