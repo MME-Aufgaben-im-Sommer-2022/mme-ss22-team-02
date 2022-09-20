@@ -7,6 +7,7 @@ import CommunityWrapper from "./CommunityWrapper";
 import AddIcon from "@mui/icons-material/Add";
 import CommunityButton from "./CommunityButton";
 import {useSubscription} from "../utils/hooks";
+import JoinOrCreateCommunityModal from "../components/modal/JoinOrCreateCommunityModal";
 
 export default function AuthenticatedPage() {
 
@@ -15,6 +16,7 @@ export default function AuthenticatedPage() {
     const communities = useSubscription([], bridge.subscribeJoinedCommunities);
 
     let [activeCommunityId, setActiveCommunityId] = useState(null);
+    let [creatingCommunity, setCreatingCommunity] = useState(false);
 
     if(!activeCommunityId || communities.indexOf(activeCommunityId) === -1) {
         activeCommunityId = null; // Only temp for this frame
@@ -35,7 +37,7 @@ export default function AuthenticatedPage() {
                     />)
                 }
                 <ListItem disablePadding sx={{ display: "block" }}>
-                    <ListItemButton onClick={()=>bridge.createCommunity({name: "peter", color:"#fcba03"})}
+                    <ListItemButton onClick={()=>setCreatingCommunity(true)}
                         sx={{
                             minHeight: 48,
                             justifyContent: "center",
@@ -57,6 +59,7 @@ export default function AuthenticatedPage() {
         <Box component={"main"} sx={{flexGrow:1, minHeight: "100vh"} }>
             {!!activeCommunityId && <CommunityWrapper key={activeCommunityId} communityId={activeCommunityId}/>}
         </Box >
+        <JoinOrCreateCommunityModal open={creatingCommunity} onClose={() => setCreatingCommunity(false)}/>
     </Box>;
 
 }

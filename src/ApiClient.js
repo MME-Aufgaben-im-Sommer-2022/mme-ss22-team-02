@@ -123,12 +123,11 @@ export class ApiClient extends Observable {
         console.log("Received", response.data);
     }
 
-    async joinCommunity({firestore, communityDoc, communitySnap, communityData}){
+    async joinCommunity(communityId){
         const joinCommunity = httpsCallable(functions, "joinCommunity");
 
-        const response = await joinCommunity({firestore, communityDoc, communitySnap, communityData});
-
-        console.log("Received", response.data);
+        const response = await joinCommunity(communityId);
+        return response.data;
     }
 
     async leaveCommunity({firestore, communityDoc, communitySnap, communityData}){
@@ -136,7 +135,7 @@ export class ApiClient extends Observable {
 
         const response = await leaveCommunity({firestore, communityDoc, communitySnap, communityData});
 
-        console.log("Received", response.data);
+        console.log("Received", response);
     }
 
     async createRequest({communityId, tags, products}){

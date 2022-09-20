@@ -1,0 +1,26 @@
+.selection-side:hover {
+    background: rgba(255,255,255, .1);
+}
+
+.selection-side.light:hover {
+    background: rgba(0, 0, 0, .1);
+}
+
+.selection-side.bot:hover {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.selection-side.top:hover {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+
+
+.selection-side {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
