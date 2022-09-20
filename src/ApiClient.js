@@ -120,7 +120,7 @@ export class ApiClient extends Observable {
 
         const response = await createCommunity({color,name});
 
-        console.log("Received", response.data);
+        return response.data;
     }
 
     async joinCommunity(communityId){
