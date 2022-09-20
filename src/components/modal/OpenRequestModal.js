@@ -3,8 +3,9 @@ import Typography from "@mui/material/Typography";
 import {Button} from "@mui/material";
 import Stack from "@mui/material/Stack";
 import {StyledModal} from "./BaseModal";
+import Box from "@mui/material/Box";
 
-const OpenRequestModal = ({open, onClose}) => {
+const OpenRequestModal = ({open, onClose, products}) => {
     const style = {
 
         position: "absolute",
@@ -15,15 +16,20 @@ const OpenRequestModal = ({open, onClose}) => {
     };
     return (
         <StyledModal open={open} onClose={onClose} sx={style}>
-            <Typography id="modal-title" variant="h6">
-                Alle Produkte
-            </Typography>
-            <Typography id="modal-description" variant="subtitle2">
-                Produktliste hier einfügen
-            </Typography>
-            <Stack style={{marginTop: 210}} spacing={25} direction="row">
-                <Button variant={"outlined"} onClick={onClose} size="small">Schließen</Button>
-            </Stack>
+            <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                <Typography id="modal-title" variant="h6">
+                    Alle gewünschte Artikel
+                </Typography>
+                <ul>
+                    {
+                        products.map((product, index) => <li key={index}>{product}</li>)
+                    }
+                </ul>
+                <div style={{flexGrow: 1}}></div>
+                <Stack >
+                    <Button variant={"outlined"} onClick={onClose} size="small">Schließen</Button>
+                </Stack>
+            </Box>
         </StyledModal>
     );
 };

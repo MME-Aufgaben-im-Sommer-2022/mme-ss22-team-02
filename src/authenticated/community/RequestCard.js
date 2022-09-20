@@ -1,5 +1,16 @@
 import React, {useState} from "react";
-import {Avatar, Button, Card, CardActions, CardContent, CardHeader, IconButton, Typography, Box} from "@mui/material";
+import {
+    Avatar,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    IconButton,
+    Typography,
+    Box,
+    Link, ButtonGroup,
+} from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import OpenRequestModal from "../../components/modal/OpenRequestModal";
 import "./RequestCard.css";
@@ -12,28 +23,54 @@ import { useApiClient } from "../../ApiBridge";
  */
 function formatDate(date){
 
-    return `${date.getHours()}:${date.getMinutes()} ${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`;
+    let minutes = date.getMinutes();
+    if(minutes < 10) {
+        minutes = "0"+ minutes;
+    }
+    let month = date.getMonth()+1;
+
+    if(month < 10) {
+        month = "0"+ month;
+    }
+
+    return `${date.getHours()}:${minutes} ${date.getDate()}.${month}.${date.getFullYear()}`;
 }
 
 export default function RequestCard(value) {
 
-    const{className, products, createdAt} = value;
-    const bridge = useApiClient();
+    const itemsVisible = 3;
+    const{className, products, createdAt, state} = value;
 
+    const bridge = useApiClient();
     const [open, setOpen] = useState(false);
+    const owner = usePromise(() => bridge.getUserCache().get(value.owner));
+
     const showAllItems = () => {
         setOpen(true);
     };
 
+    let myRequest = value.owner === bridge.getUser().uid;
+    let action = null;
 
-    const owner = usePromise(() => bridge.getUserCache().get(value.owner));
-
-    const style = {
-        overflowY:"scroll",
-      };
+    if(state === "IN_PROGRESS") {
+        if(myRequest) {
+            action = <ButtonGroup aria-label="button group">
+                <Button color="success" variant="contained">Erhalten</Button>
+                <Button color="error">Abbrechen</Button>
+            </ButtonGroup>;
+        } else {
+            action = <Button color="error" variant="outlined">Kann nicht mehr</Button>;
+        }
+    } else {
+        if(myRequest) {
+            action = <Button color="error" variant="outlined">Abbrechen</Button>;
+        } else {
+            action = <Button variant="outlined">Bring ich mit</Button>;
+        }
+    }
 
     return (
-        <Card className={className + " request-card"}>
+        <Card className={className + " request-card"} sx={{ boxShadow: 4 }}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe">
@@ -48,28 +85,30 @@ export default function RequestCard(value) {
                 title= {owner?.name || ""}
                 subheader={formatDate(createdAt.toDate())}
             />
-            <CardContent>
+            <CardContent style={{height: 100}}>
                 <Typography variant="body2" color="text.secondary">
                 </Typography>
 
-                <Box sx={style}>
+                <Box>
                     {
-                        products.map(listProduct => (
-                            <li key={listProduct} className="list-products" >
+                        products.slice(0, itemsVisible).map((listProduct, index) => (
+                            <li key={index} className="list-products" >
                                 {listProduct}
                             </li>
                         ))
                     }
+                    {products.length > itemsVisible && <li>
+                        <Link size="small" style={{cursor: "pointer"}} onClick={showAllItems}>mehr...</Link>
+                    </li>}
                 </Box>
-
-                <Button size="small" onClick={showAllItems}>all Products</Button>
-                <OpenRequestModal open={open} onClose={() => setOpen(false)} />
+                <OpenRequestModal products={products} open={open} onClose={() => setOpen(false)} />
             </CardContent>
 
+            <div style={{marginTop: 12}}></div>
             <Spacer/>
 
             <CardActions className={"request-card-actions"}>
-                <Button variant="outlined">Bring ich mit</Button>
+                {action}
             </CardActions>
         </Card>
     );
