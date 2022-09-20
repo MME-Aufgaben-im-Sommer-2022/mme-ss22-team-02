@@ -155,9 +155,13 @@ export class ApiClient extends Observable {
     async closeRequest({communityId, requestId}){
         const closeRequest = httpsCallable(functions, "closeRequest");
 
-        const response = await closeRequest({communityId, requestId});
+        await closeRequest({communityId, requestId});
+    }
 
-        console.log("Received", response.data);
+    async leaveRequest({communityId, requestId}){
+        const leaveRequest = httpsCallable(functions, "leaveRequest");
+
+        await leaveRequest({communityId, requestId});
     }
 
     subscribeJoinedCommunities(callback) {
