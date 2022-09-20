@@ -17,6 +17,8 @@ import "./RequestCard.css";
 import {Spacer} from "../../components/Spacer";
 import { usePromise } from "../../utils/hooks";
 import { useApiClient } from "../../ApiBridge";
+import LoadingScreenModal from "../../components/modal/LoadingScreenModal";
+import {useParentCommunity} from "../../utils/context-utilities";
 /**
  *
  * @param {Date} date
@@ -39,10 +41,12 @@ function formatDate(date){
 export default function RequestCard(value) {
 
     const itemsVisible = 3;
-    const{className, products, createdAt, state} = value;
+    const{id, className, products, createdAt, state} = value;
 
     const bridge = useApiClient();
+    const community = useParentCommunity();
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const owner = usePromise(() => bridge.getUserCache().get(value.owner));
 
     const showAllItems = () => {
@@ -50,22 +54,35 @@ export default function RequestCard(value) {
     };
 
     let myRequest = value.owner === bridge.getUser().uid;
-    let action = null;
 
+    const acceptRequest = async () => {
+        setLoading(true);
+        await community.acceptRequest(id);
+        setLoading(false);
+    };
+    const closeRequest = async () => {
+        setLoading(true);
+        await community.closeRequest(id);
+        setLoading(false);
+    };
+    const leaveRequest = async () => {
+        setLoading(true);
+        await community.leaveRequest(id);
+        setLoading(false);
+    };
+
+    let action;
     if(state === "IN_PROGRESS") {
         if(myRequest) {
-            action = <ButtonGroup aria-label="button group">
-                <Button color="success" variant="contained">Erhalten</Button>
-                <Button color="error">Abbrechen</Button>
-            </ButtonGroup>;
+            action = <Button color="success" variant="contained" onClick={closeRequest}>Erhalten</Button>;
         } else {
-            action = <Button color="error" variant="outlined">Kann nicht mehr</Button>;
+            action = <Button color="error" variant="outlined" onClick={leaveRequest}>Kann nicht mehr</Button>;
         }
     } else {
         if(myRequest) {
-            action = <Button color="error" variant="outlined">Abbrechen</Button>;
+            action = <Button color="error" variant="outlined" onClick={closeRequest}>Abbrechen</Button>;
         } else {
-            action = <Button variant="outlined">Bring ich mit</Button>;
+            action = <Button variant="outlined" onClick={acceptRequest}>Bring ich mit</Button>;
         }
     }
 
@@ -102,6 +119,9 @@ export default function RequestCard(value) {
                     </li>}
                 </Box>
                 <OpenRequestModal products={products} open={open} onClose={() => setOpen(false)} />
+                {
+                    loading && <LoadingScreenModal/>
+                }
             </CardContent>
 
             <div style={{marginTop: 12}}></div>
