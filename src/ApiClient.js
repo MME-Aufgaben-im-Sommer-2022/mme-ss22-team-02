@@ -163,7 +163,7 @@ export class ApiClient extends Observable {
     subscribeJoinedCommunities(callback) {
 
         const unsub = onSnapshot(doc(firestore, "users", authentication.currentUser.uid), (snapshot) => {
-            callback(snapshot.data().communities);
+            callback(snapshot.data()?.communities || []);
         });
 
         return new Subscription(unsub);
