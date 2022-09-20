@@ -13,6 +13,16 @@ export function useEvent(observable, event, callback) {
     }, [observable, event, callback]);
 }
 
+export function usePromise(callback) {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        callback().then(data => setData(data));
+    });
+
+    return data;
+}
+
 export function useSubscription(initial, subscribe, deps = []) {
     const [data, setData] = useState(initial);
 
