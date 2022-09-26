@@ -19,24 +19,8 @@ import { usePromise } from "../../utils/hooks";
 import { useApiClient } from "../../ApiBridge";
 import LoadingScreenModal from "../../components/modal/LoadingScreenModal";
 import {useParentCommunity} from "../../utils/context-utilities";
-/**
- *
- * @param {Date} date
- */
-function formatDate(date){
-
-    let minutes = date.getMinutes();
-    if(minutes < 10) {
-        minutes = "0"+ minutes;
-    }
-    let month = date.getMonth()+1;
-
-    if(month < 10) {
-        month = "0"+ month;
-    }
-
-    return `${date.getHours()}:${minutes} ${date.getDate()}.${month}.${date.getFullYear()}`;
-}
+import ChatModal from "../../components/modal/ChatModal";
+import {formatDate} from "../../utils/DateUtilities";
 
 export default function RequestCard(value) {
 
@@ -46,6 +30,7 @@ export default function RequestCard(value) {
     const bridge = useApiClient();
     const community = useParentCommunity();
     const [open, setOpen] = useState(false);
+    const [chatOpen, setChatOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const owner = usePromise(() => bridge.getUserCache().get(value.owner));
 
@@ -95,7 +80,7 @@ export default function RequestCard(value) {
                     </Avatar>
                 }
                 action={
-                    <IconButton aria-label="settings">
+                    <IconButton aria-label="settings" onClick={() => setChatOpen(true)}>
                         <ChatIcon />
                     </IconButton>
                 }
@@ -130,6 +115,7 @@ export default function RequestCard(value) {
             <CardActions className={"request-card-actions"}>
                 {action}
             </CardActions>
+            {chatOpen && <ChatModal requestId={id} onClose={() => setChatOpen(false)}/>}
         </Card>
     );
 

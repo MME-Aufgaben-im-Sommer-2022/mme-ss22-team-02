@@ -3,7 +3,7 @@ import {Observable} from "./utils/Observable";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { getFirestore, onSnapshot, doc, getDoc, query, collection, where } from "firebase/firestore";
+import { getFirestore, onSnapshot, doc, getDoc, query, collection, where, orderBy } from "firebase/firestore";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 import Subscription from "./utils/Subscription";
 import {UserCache} from "./UserCache";
@@ -163,6 +163,12 @@ export class ApiClient extends Observable {
         await leaveRequest({communityId, requestId});
     }
 
+    async sendMessage({communityId, requestId, message}){
+        const sendMessage = httpsCallable(functions, "sendMessage");
+
+        await sendMessage({communityId, requestId, message});
+    }
+
     subscribeJoinedCommunities(callback) {
 
         const unsub = onSnapshot(doc(firestore, "users", authentication.currentUser.uid), (snapshot) => {
@@ -210,6 +216,25 @@ export class ApiClient extends Observable {
                 requests.push({
                     id: doc.id,
                     ...doc.data(),
+                });
+            });
+            callback(requests);
+        });
+
+        return new Subscription(unsub);
+    }
+    subscribeChatMessage(communityId, requestId, callback) {
+        const q = query(collection(firestore, "communities", communityId, "requests", requestId, "messages"), orderBy("sentAt", "desc"));
+        const unsub = onSnapshot(q, (snapshot) => {
+            const requests = [];
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                requests.push({
+                    id: doc.id,
+                    self: data.sentBy === this.getUser().uid,
+                    sentBy: data.sentBy,
+                    date: data.sentAt.toDate(),
+                    text: data.text,
                 });
             });
             callback(requests);

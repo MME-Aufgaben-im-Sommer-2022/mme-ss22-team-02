@@ -60,6 +60,12 @@ export class Community extends Observable {
             communityId: this._id,
             requestId,
         });
+    } async sendMessage(requestId, message) {
+        await this._apiClient.sendMessage({
+            communityId: this._id,
+            requestId,
+            message,
+        });
     }
 
     subscribeOpenRequests(callback) {
@@ -70,5 +76,9 @@ export class Community extends Observable {
     }
     subscribeAcceptedRequests(callback) {
         return this._apiClient.subscribeAcceptedRequests(this._id, callback);
+    }
+
+    subscribeChatMessage(requestId, callback) {
+        return this._apiClient.subscribeChatMessage(this._id, requestId, callback);
     }
 }

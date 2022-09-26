@@ -16,16 +16,18 @@ const ModalBox = styled(Box, {})(({theme}) => ({
     borderRadius: 12,
 }));
 
-export const StyledModal = ({open, onClose, children, sx}) => {
+export const StyledModal = ({open, onClose, children, sx, className}) => {
 
     const style = {
         boxShadow: 24,
         p: 4,
+        outline: "none",
+        border: "none",
         ...sx,
     };
     return (
-        <Modal open={open} onClose={onClose} >
-            <ModalBox sx={style}>
+        <Modal open={open} onClose={onClose}>
+            <ModalBox sx={style} className={className}>
                 {children}
             </ModalBox>
         </Modal>
