@@ -9,7 +9,7 @@ import {
     IconButton,
     Typography,
     Box,
-    Link, ButtonGroup,
+    Link,
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import OpenRequestModal from "../../components/modal/OpenRequestModal";
