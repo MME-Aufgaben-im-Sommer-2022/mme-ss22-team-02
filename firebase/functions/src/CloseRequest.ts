@@ -30,7 +30,6 @@ export default functions.https.onCall(async (data, context) => {
         };
     }
 
-    await requestDoc.delete();
-
+    await firestore.recursiveDelete(requestDoc);
     return {};
 });

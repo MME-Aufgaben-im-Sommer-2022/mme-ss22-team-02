@@ -6,7 +6,8 @@ import RequestGrid from "./RequestGrid";
 
 export default function OpenRequests (){
     const community = useParentCommunity();
+    const accepted = useSubscription([], community.subscribeAcceptedRequests.bind(community));
     const requests = useSubscription([], community.subscribeOpenRequests.bind(community));
 
-    return <RequestGrid requests={requests}/>;
+    return <RequestGrid requests={[...accepted, ...requests]}/>;
 }
