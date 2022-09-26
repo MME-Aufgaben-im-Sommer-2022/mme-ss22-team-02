@@ -3,9 +3,10 @@ import {Observable} from "./utils/Observable";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { getFirestore, onSnapshot, doc, getDoc, query, collection, where } from "firebase/firestore";
+import { getFirestore, onSnapshot, doc, getDoc, query, collection, where, orderBy } from "firebase/firestore";
 import { getAuth, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, onAuthStateChanged } from "firebase/auth";
 import Subscription from "./utils/Subscription";
+import {UserCache} from "./UserCache";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDrCBQqtoIo0jg2-r8nLSGchkUfCh6eWvo",
@@ -48,6 +49,7 @@ export class ApiClient extends Observable {
     _user = null;
     _userChecked = false;
     _preparing = true;
+    _cache;
 
     constructor() {
         super();
@@ -58,6 +60,7 @@ export class ApiClient extends Observable {
             this._userChecked = true;
             this.emit("authorizeChange");
         });
+        this._cache = new UserCache(this);
     }
 
     /**
@@ -65,6 +68,12 @@ export class ApiClient extends Observable {
      */
     getUser() {
         return this._user;
+    }
+    /**
+     * @return {import("./UserCache").UserCache}
+     */
+    getUserCache() {
+        return this._cache;
     }
 
     async doOAuthLogin(type = "google") {
@@ -111,15 +120,14 @@ export class ApiClient extends Observable {
 
         const response = await createCommunity({color,name});
 
-        console.log("Received", response.data);
+        return response.data;
     }
 
-    async joinCommunity({firestore, communityDoc, communitySnap, communityData}){
+    async joinCommunity(communityId){
         const joinCommunity = httpsCallable(functions, "joinCommunity");
 
-        const response = await joinCommunity({firestore, communityDoc, communitySnap, communityData});
-
-        console.log("Received", response.data);
+        const response = await joinCommunity(communityId);
+        return response.data;
     }
 
     async leaveCommunity({firestore, communityDoc, communitySnap, communityData}){
@@ -127,7 +135,7 @@ export class ApiClient extends Observable {
 
         const response = await leaveCommunity({firestore, communityDoc, communitySnap, communityData});
 
-        console.log("Received", response.data);
+        console.log("Received", response);
     }
 
     async createRequest({communityId, tags, products}){
@@ -140,24 +148,31 @@ export class ApiClient extends Observable {
 
     async acceptRequest({communityId, requestId}){
         const acceptRequest = httpsCallable(functions, "acceptRequest");
-
-        const response = await acceptRequest({communityId, requestId});
-
-        console.log("Received", response.data);
+        await acceptRequest({communityId, requestId});
     }
 
     async closeRequest({communityId, requestId}){
         const closeRequest = httpsCallable(functions, "closeRequest");
 
-        const response = await closeRequest({communityId, requestId});
+        await closeRequest({communityId, requestId});
+    }
 
-        console.log("Received", response.data);
+    async leaveRequest({communityId, requestId}){
+        const leaveRequest = httpsCallable(functions, "leaveRequest");
+
+        await leaveRequest({communityId, requestId});
+    }
+
+    async sendMessage({communityId, requestId, message}){
+        const sendMessage = httpsCallable(functions, "sendMessage");
+
+        await sendMessage({communityId, requestId, message});
     }
 
     subscribeJoinedCommunities(callback) {
 
         const unsub = onSnapshot(doc(firestore, "users", authentication.currentUser.uid), (snapshot) => {
-            callback(snapshot.data().communities);
+            callback(snapshot.data()?.communities || []);
         });
 
         return new Subscription(unsub);
@@ -167,6 +182,7 @@ export class ApiClient extends Observable {
         const unsub = onSnapshot(q, (snapshot) => {
             const requests = [];
             snapshot.forEach((doc) => {
+                console.log(doc);
                 requests.push({
                     id: doc.id,
                     ...doc.data(),
@@ -207,8 +223,31 @@ export class ApiClient extends Observable {
 
         return new Subscription(unsub);
     }
+    subscribeChatMessage(communityId, requestId, callback) {
+        const q = query(collection(firestore, "communities", communityId, "requests", requestId, "messages"), orderBy("sentAt", "desc"));
+        const unsub = onSnapshot(q, (snapshot) => {
+            const requests = [];
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                requests.push({
+                    id: doc.id,
+                    self: data.sentBy === this.getUser().uid,
+                    sentBy: data.sentBy,
+                    date: data.sentAt.toDate(),
+                    text: data.text,
+                });
+            });
+            callback(requests);
+        });
+
+        return new Subscription(unsub);
+    }
 
     async getCommunityData(communityId) {
         return await getDoc(doc(firestore, "communities", communityId)).then(value => value.data());
+    }
+
+    async getProfile(userId) {
+        return await getDoc(doc(firestore, "profiles", userId)).then(value => value.data());
     }
 }

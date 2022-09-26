@@ -17,7 +17,7 @@ export default functions.https.onCall(async (data, context) => {
         };
     }
 
-    if (communityData.members.contains(context.auth.uid)) {
+    if (communityData.members.includes(context.auth.uid)) {
         return {
             error: "Du bist bereits in dieser Community",
         };

@@ -1,5 +1,4 @@
 import {Observable} from "../utils/Observable";
-import RequestData from "./RequestData";
 
 export class Community extends Observable {
     _id;
@@ -34,33 +33,39 @@ export class Community extends Observable {
         this.emit("loaded");
     }
 
-    async getOpenRequests() {
-// asd
-    }
-
-    async addNewRequest() {
-// asd
-    }
-    async acceptRequest() {
-// asd
-    }
-    async getMyRequests() {
-// asd
-    }
-
-    async getMyAcceptedRequests() {
-// asd
-    }
-
-    /**
-     * @param id
-     * @return {Promise<RequestData>}
-     */
-    async getRequestData(id) {
-        await new Promise(resolve => {
-            setTimeout(resolve, 1000);
+    async addNewRequest({products, tags}) {
+        await this._apiClient.createRequest({
+            communityId: this._id,
+            tags,
+            products: products,
         });
-        return new RequestData(id);
+    }
+
+    async acceptRequest(requestId) {
+        await this._apiClient.acceptRequest({
+            communityId: this._id,
+            requestId,
+        });
+    }
+
+    async closeRequest(requestId) {
+        await this._apiClient.closeRequest({
+            communityId: this._id,
+            requestId,
+        });
+    }
+
+    async leaveRequest(requestId) {
+        await this._apiClient.leaveRequest({
+            communityId: this._id,
+            requestId,
+        });
+    } async sendMessage(requestId, message) {
+        await this._apiClient.sendMessage({
+            communityId: this._id,
+            requestId,
+            message,
+        });
     }
 
     subscribeOpenRequests(callback) {
@@ -71,5 +76,9 @@ export class Community extends Observable {
     }
     subscribeAcceptedRequests(callback) {
         return this._apiClient.subscribeAcceptedRequests(this._id, callback);
+    }
+
+    subscribeChatMessage(requestId, callback) {
+        return this._apiClient.subscribeChatMessage(this._id, requestId, callback);
     }
 }

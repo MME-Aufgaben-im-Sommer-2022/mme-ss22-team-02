@@ -49,9 +49,14 @@ export default function Sidebar(props) {
     const light = useIsLight();
     return <Drawer variant={"permanent"} open={false}>
         <DrawerHeader>
-            <IconButton onClick={() => toggleLight()}>
-                {!light ? <LightModeIcon/> : <DarkModeIcon/>}
-            </IconButton>
+            <div>
+                <div>
+                    <IconButton onClick={() => toggleLight()}>
+                        {!light ? <LightModeIcon/> : <DarkModeIcon/>}
+                    </IconButton>
+                </div>
+                {props.headerItems}
+            </div>
         </DrawerHeader>
         <Divider/>
         {props.children}

@@ -14,6 +14,26 @@ service cloud.firestore {
       allow read: if request.auth != null && exists(/databases/$(database)/documents/communities/$(community)/members/$(request.auth.uid));
     }
 
+    match /communities/{community}/requests/{requestId}/messages {
+
+      function isParticipant() {
+        let artReq = get(/databases/$(database)/documents/communities/$(community)/requests/$(requestId));
+        return artReq.owner == request.auth.uid || artReq.bringer == request.auth.uid;
+      }
+      // Allow the user to read community data if member of community
+      allow read: if request.auth != null && isParticipant();
+    }
+
+    match /communities/{community}/requests/{requestId}/messages/{messageId} {
+
+      function isParticipant() {
+        let artReq = get(/databases/$(database)/documents/communities/$(community)/requests/$(requestId));
+        return artReq.data.owner == request.auth.uid || artReq.data.bringer == request.auth.uid;
+      }
+      // Allow the user to read community data if member of community
+      allow read: if request.auth != null && isParticipant();
+    }
+
     match /communities/{community} {
 
       // Allow the user to read community data if member of community
@@ -26,6 +46,12 @@ service cloud.firestore {
       allow read: if request.auth != null && request.auth.uid == userId;
     }
 
+
+    match /profiles/{userId} {
+
+      // Allow the user to read community data if member of community
+      allow read: if request.auth != null;
+    }
     match /{document=**} {
       allow read, write: if false;
     }
