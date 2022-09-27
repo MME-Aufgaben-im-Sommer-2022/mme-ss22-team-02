@@ -5,7 +5,7 @@ import {useParentCommunity} from "../../utils/context-utilities";
 import LoadingScreen from "../../utils/LoadingScreen";
 import "./InfoModal.css";
 import {getReadableColor} from "../../utils/colors";
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 
 const style = {
     top: "50%",
@@ -48,11 +48,12 @@ export default function InfoModal({open, onClose}) {
             </div>
 
             <div className="info-body">
+                <TextField value={communityData.id} disabled label="Beitritts Code"/>
                 <div style={{flexGrow: 1}}></div>
                 <div className="info-buttons">
                     <div style={{flexGrow: 1}}></div>
                     <Button variant="outlined" color="error" onClick={leaveCommunity}>
-                        Leave Community
+                        Gruppe Verlassen
                     </Button>
                 </div>
             </div>

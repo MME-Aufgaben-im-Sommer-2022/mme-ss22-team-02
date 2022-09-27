@@ -19,4 +19,13 @@ export class UserCache {
         this._cache[userId] = await this._apiClient.getProfile(userId);
         return this._cache[userId];
     }
+
+    async saveProfile(userId, deltaData) {
+        await this._apiClient.saveProfile(deltaData);
+        const newProfile = await this._apiClient.getProfile(userId);
+
+        Object.entries(newProfile).forEach(value => {
+            this._cache[userId][value[0]] = value[1];
+        });
+    }
 }

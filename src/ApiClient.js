@@ -165,6 +165,11 @@ export class ApiClient extends Observable {
 
         await sendMessage({communityId, requestId, message});
     }
+    async saveProfile(deltaData){
+        const sendMessage = httpsCallable(functions, "saveProfile");
+
+        await sendMessage(deltaData);
+    }
 
     subscribeJoinedCommunities(callback) {
 
@@ -241,7 +246,10 @@ export class ApiClient extends Observable {
     }
 
     async getCommunityData(communityId) {
-        return await getDoc(doc(firestore, "communities", communityId)).then(value => value.data());
+        return await getDoc(doc(firestore, "communities", communityId)).then(value => ({
+            id: value.id,
+            ...value.data(),
+        }));
     }
 
     async getProfile(userId) {

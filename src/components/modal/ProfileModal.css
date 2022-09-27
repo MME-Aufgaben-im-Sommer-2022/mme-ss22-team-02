@@ -1,0 +1,26 @@
+.profile-header {
+    width: 100%;
+    min-height: 20%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 32px;
+    background-color: orange;
+    color: white;
+}
+
+.profile-modal {
+    display: flex;
+    flex-direction: column;
+}
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 32px;
+}
+
+.profile-buttons {
+    display: flex;
+}

@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import {useApiClient} from "../ApiBridge";
 import Sidebar from "../components/Sidebar";
 import Box from "@mui/material/Box";
-import {List, ListItem, ListItemButton} from "@mui/material";
+import {IconButton, List, ListItem, ListItemButton} from "@mui/material";
 import CommunityWrapper from "./CommunityWrapper";
 import AddIcon from "@mui/icons-material/Add";
 import CommunityButton from "./CommunityButton";
 import {useSubscription} from "../utils/hooks";
 import JoinOrCreateCommunityModal from "../components/modal/JoinOrCreateCommunityModal";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ProfileModal from "../components/modal/ProfileModal";
 
 export default function AuthenticatedPage() {
 
@@ -17,6 +20,7 @@ export default function AuthenticatedPage() {
 
     let [activeCommunityId, setActiveCommunityId] = useState(null);
     let [creatingCommunity, setCreatingCommunity] = useState(false);
+    let [showSettings, setShowSettings] = useState(false);
 
     if(!activeCommunityId || communities.indexOf(activeCommunityId) === -1) {
         activeCommunityId = null; // Only temp for this frame
@@ -26,7 +30,18 @@ export default function AuthenticatedPage() {
     }
 
     return <Box sx={{display:"flex", minHeight: "100%"}}>
-        <Sidebar>
+        <Sidebar headerItems={[
+            (<div key="1">
+                <IconButton onClick={() => setShowSettings(true)}>
+                    <SettingsIcon/>
+                </IconButton>
+            </div>),
+            (<div key="2">
+                <IconButton onClick={() => bridge.doLogout()} color="error">
+                    <LogoutIcon/>
+                </IconButton>
+            </div>),
+        ]}>
             <List>
                 {
                     communities.map((communityId) => <CommunityButton
@@ -60,6 +75,7 @@ export default function AuthenticatedPage() {
             {!!activeCommunityId && <CommunityWrapper key={activeCommunityId} communityId={activeCommunityId}/>}
         </Box >
         <JoinOrCreateCommunityModal open={creatingCommunity} onClose={() => setCreatingCommunity(false)}/>
+        {showSettings && <ProfileModal open={showSettings} onClose={() => setShowSettings(false)} userId={bridge.getUser().uid}/>}
     </Box>;
 
 }
