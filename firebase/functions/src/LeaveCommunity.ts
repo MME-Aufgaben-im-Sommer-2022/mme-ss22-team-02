@@ -17,22 +17,27 @@ export default functions.https.onCall(async (data, context) => {
         };
     }
 
-    if (!communityData.members.contains(context.auth.uid)) {
+    if (!communityData.members.includes(context.auth.uid)) {
         return {
             error: "Du bist nicht in dieser Community",
         };
     }
 
-    await communityDoc.set({
-        members: arrayRemove(context.auth.uid),
-    }, {
-        merge: true,
-    });
 
-    await firestore
-        .collection(`communities/${data}/members`)
-        .doc(context.auth.uid)
-        .delete();
+    if (communityData.members.length > 1) {
+        await communityDoc.set({
+            members: arrayRemove(context.auth.uid),
+        }, {
+            merge: true,
+        });
+
+        await firestore
+            .collection(`communities/${data}/members`)
+            .doc(context.auth.uid)
+            .delete();
+    } else {
+        await firestore.recursiveDelete(communityDoc);
+    }
 
     await firestore
         .collection("users")

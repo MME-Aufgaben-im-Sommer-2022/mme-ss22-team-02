@@ -130,12 +130,9 @@ export class ApiClient extends Observable {
         return response.data;
     }
 
-    async leaveCommunity({firestore, communityDoc, communitySnap, communityData}){
+    async leaveCommunity(communityId){
         const leaveCommunity = httpsCallable(functions, "leaveCommunity");
-
-        const response = await leaveCommunity({firestore, communityDoc, communitySnap, communityData});
-
-        console.log("Received", response);
+        await leaveCommunity(communityId);
     }
 
     async createRequest({communityId, tags, products}){
