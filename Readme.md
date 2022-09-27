@@ -24,7 +24,7 @@ _Listen Sie tabelarisch alle Teammitglieder mit Name, E-Mail-Adresse und Foto au
 | Jonas Freyberg     | Jonas.Freyberg@stud.uni-regensburg.de | $1600 |
 | Jennifer Anette Reber      | jennifer-anette.reber@stud.uni-regensburg.de      |   $12 |
 | Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      |    $1 |
-| Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |  ![](alia.jpg)|
+| Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |  ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/alia.jpg)|
 
 
 Die Anwendung wurde gemeinsam in Coding-Sessions erarbeitet, welches eine genaue Aufteilung der erstallten Aufgabenbereiche der Teammitglieder erschwert.
