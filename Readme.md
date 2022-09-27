@@ -17,9 +17,14 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 
 ## Team
 
+_Listen Sie tabelarisch alle Teammitglieder mit Name, E-Mail-Adresse und Foto auf. Halten Sie für jedes Mitglied kurz fest, welchen Teilbereich der Anwendung die jeweilige Person maßgeblich bearbeitet hat._
 
-| Tables        | Are           | Cool  |
+| Name        | E-Mail-Adresse           | Foto  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Jonas Freyberg     | Jonas.Freyberg@stud.uni-regensburg.de | $1600 |
+| Jennifer Anette Reber      | jennifer-anette.reber@stud.uni-regensburg.de      |   $12 |
+| Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      |    $1 |
+| Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |   ![alt text]![alt text](https://elearning.uni-regensburg.de/pluginfile.php/1412097/user/icon/boost_campus/f1?rev=19759135 "Logo Title Text 1")|
+
+
+Die Anwendung wurde gemeinsam in Coding-Sessions erarbeitet, welches eine genaue Aufteilung der erstallten Aufgabenbereiche der Teammitglieder erschwert.
