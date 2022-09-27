@@ -6,12 +6,20 @@ Dieses Repository bildet die Grundlage für Ihre Projektarbeit und wurde über d
 
 ## Projekt
 
-_Fassen Sie kurz die wichtigsten Features, die intendierte Zielgruppe und die grundlegende Motivation des Projekts zusammen. Nennen Sie die aktuell bereits implementierten Funktionen und verlinken Sie den aktuellsten Release._
+Die wichtigsten Features unseres Projekts sind die Loginseite (OAuth-2 Anmeldung), die Erstellung von - und Beitritt der Communities (mittels Beitrittscode), die Erstellung und Annahme von Nutzeranfragen (im Sinne von Lebensmittelanforderungen und das Besorgen dieser) und die Chatfunktion, in welcher die User sich bezüglich der "Bestellung" absprechen können. Zudem haben wir einen augenfreundlichen Dark-Mode implementiert. 
+Die intendierten Zielgruppen sind zeitlich eingeschränkte Personen, die sich beispielsweise innerhalb eines Ortes (zum Beispiel: Anlegen einer Community, welche den Ortsnamen enthält) untereinander absprechen können, wer welche Lebensmittel wann einholt, oder auch Studenten, die sich hierdurch zeitliche und finanzielle Ressourcen (e.g. Spritkosten, Wegkosten) einsparen können. (Beispiel: Wohnen im selben Wohnheim)
+Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von den üblichen Kommunikationskanälen (Facebook, Whatsapp, et cetera) unterscheidet und somit einen eigenen,  Kommunikationskanal für die Organisation und Beschaffung von Lebensmitteln bereitstellt. Durch die minimalistische Auswahl der Funktionen bietet man den Nutzern der Anwendung eine klare und intuitive Möglichkeit zur einfachen Absprache innerhalb einer Community untereinander an, welche nur "ausgewählten" Personen (User verschickt "Einladungscode") zur Verfügung gestellt wird.
 
 ## Beschreibung & Anleitung
 
-_Beschreiben Sie die zentralen Funktionen Ihrer Anwendung und deren Verwendung. Nutzen Sie dazu Screenshots und/oder Videos. Verlinken Sie ein min. 60-sekündiges Demo-Video, das die Verwendung aller wichtigen Funktionen zeigt und in Form eines Audio-Kommentars beschreibt._
+
+
 
 ## Team
 
-_Listen Sie tabelarisch alle Teammitglieder mit Name, E-Mail-Adresse und Foto auf. Halten Sie für jedes Mitglied kurz fest, welchen Teilbereich der Anwendung die jeweilige Person maßgeblich bearbeitet hat._
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
