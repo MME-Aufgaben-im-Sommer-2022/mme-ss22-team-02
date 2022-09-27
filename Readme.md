@@ -24,7 +24,8 @@ _Listen Sie tabelarisch alle Teammitglieder mit Name, E-Mail-Adresse und Foto au
 | Jonas Freyberg     | Jonas.Freyberg@stud.uni-regensburg.de | $1600 |
 | Jennifer Anette Reber      | jennifer-anette.reber@stud.uni-regensburg.de      |   $12 |
 | Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      |    $1 |
-| Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |  ![](https://elearning.uni-regensburg.de/pluginfile.php/1412097/user/icon/boost_campus/f1?rev=19759135)|
+| Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |  ![](.docs\images\alia.jpg)|
 
+.docs\images\alia.jpg
 
 Die Anwendung wurde gemeinsam in Coding-Sessions erarbeitet, welches eine genaue Aufteilung der erstallten Aufgabenbereiche der Teammitglieder erschwert.
