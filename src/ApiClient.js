@@ -130,12 +130,9 @@ export class ApiClient extends Observable {
         return response.data;
     }
 
-    async leaveCommunity({firestore, communityDoc, communitySnap, communityData}){
+    async leaveCommunity(communityId){
         const leaveCommunity = httpsCallable(functions, "leaveCommunity");
-
-        const response = await leaveCommunity({firestore, communityDoc, communitySnap, communityData});
-
-        console.log("Received", response);
+        await leaveCommunity(communityId);
     }
 
     async createRequest({communityId, tags, products}){
@@ -167,6 +164,11 @@ export class ApiClient extends Observable {
         const sendMessage = httpsCallable(functions, "sendMessage");
 
         await sendMessage({communityId, requestId, message});
+    }
+    async saveProfile(deltaData){
+        const sendMessage = httpsCallable(functions, "saveProfile");
+
+        await sendMessage(deltaData);
     }
 
     subscribeJoinedCommunities(callback) {
@@ -244,7 +246,10 @@ export class ApiClient extends Observable {
     }
 
     async getCommunityData(communityId) {
-        return await getDoc(doc(firestore, "communities", communityId)).then(value => value.data());
+        return await getDoc(doc(firestore, "communities", communityId)).then(value => ({
+            id: value.id,
+            ...value.data(),
+        }));
     }
 
     async getProfile(userId) {

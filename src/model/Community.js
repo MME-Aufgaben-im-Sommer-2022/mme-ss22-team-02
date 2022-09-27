@@ -81,4 +81,8 @@ export class Community extends Observable {
     subscribeChatMessage(requestId, callback) {
         return this._apiClient.subscribeChatMessage(this._id, requestId, callback);
     }
+
+    async leave() {
+        return this._apiClient.leaveCommunity(this._id);
+    }
 }
