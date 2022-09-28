@@ -7,6 +7,8 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 
 ## Beschreibung & Anleitung
 
+[Demo-Video ShopForMe](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/videos/shopForMeVideo.mp4)  
+
 | Funktion        | Verwendung           | Screenshot  |
 | ------------- |:-------------:| :-----:|
 | Login     | Um die Anwendung wie intendiert zu nutzen, kann der User sich mit Klick auf die entsprechenden Buttons der Login-Seite anmelden. Dazu wird ein bereits vorhandenes Konto bei Google, Facebook oder GitHub benötigt, über welches man sich dann mit ShopForMe verbindet.    | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/login.png) |
@@ -16,10 +18,7 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 | Gruppeninfo, Gruppe verlassen      | In einer Gruppe kann der User mit den linken oberen Button neben der Seitenleiste eine Info-Ansicht zur Gruppe öffnen, auf welcher der Beitrittscode zu sehen ist und die Möglichkeit zum verlassen der Gruppe mit Hilfe des dort befindlichen Buttons besteht.      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/group.png)   |
 | Neue Anfrage erstellen      | Über den Button rechts oben öffnet sich ein Fenster zum erstellen einer neuen Anfrage. Der User kann hier seine Einkaufswünsche hinzufügen und diese dann ändern oder wieder löschen, bevor er sie veröffentlicht.      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/newRequest.png)   |
 | Chat      | Wurde eine Anfrage angenommen ist es über die Chat-Funktion möglich Nachrichten zwischen dem Bringer und Empfänger auszutauschen. Dieser ist über das Chatsymbol auf der entsprechenden Anfragekarte zu öffnen.      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/chat.png)   |
-| Anfrage annehmen/abbrechen      | Ist eine Anfrage in einer Gruppe veröffentlicht worden, kann diese von anderen Teilnehmern der Gruppe gesehen und angenommen werden, ebenso ist es möglich diese abzubrechen von Bringer sowie Empfänger. Innerhalb der Anfrage kann man auf mehr klicken um alle Artikel angezeit zu bekommen.      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/openRequest.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/myRequest.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/myRequest2.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/allArticles.png)  |  
-
-[Demo-Video ShopForMe]()
-
+| Anfrage annehmen/abbrechen      | Ist eine Anfrage in einer Gruppe veröffentlicht worden, kann diese von anderen Teilnehmern der Gruppe gesehen und angenommen werden, ebenso ist es möglich diese abzubrechen von Bringer sowie Empfänger. Innerhalb der Anfrage kann man auf mehr klicken um alle Artikel angezeit zu bekommen.      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/openRequest.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/myRequest.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/myRequest2.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/allArticles.png)  |
 
 ## Team
 
