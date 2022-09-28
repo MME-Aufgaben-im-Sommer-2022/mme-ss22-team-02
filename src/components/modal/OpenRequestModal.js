@@ -18,7 +18,7 @@ const OpenRequestModal = ({open, onClose, products}) => {
         <StyledModal open={open} onClose={onClose} sx={style}>
             <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <Typography id="modal-title" variant="h6">
-                    Alle gewünschte Artikel
+                    Alle gewünschten Artikel
                 </Typography>
                 <ul>
                     {
