@@ -9,6 +9,7 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 
 [Demo-Video ShopForMe](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/videos/shopForMeVideo.mp4)  
 
+
 | Funktion        | Verwendung           | Screenshot  |
 | ------------- |:-------------:| :-----:|
 | Login     | Um die Anwendung wie intendiert zu nutzen, kann der User sich mit Klick auf die entsprechenden Buttons der Login-Seite anmelden. Dazu wird ein bereits vorhandenes Konto bei Google, Facebook oder GitHub benötigt, über welches man sich dann mit ShopForMe verbindet.    | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/login.png) |
@@ -24,9 +25,9 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 
 | Name        | E-Mail-Adresse           | Foto  |
 | ------------- |:-------------:| -----:|
-| Jonas Freyberg     | Jonas.Freyberg@stud.uni-regensburg.de | $1600 |
+| Jonas Freyberg     | Jonas.Freyberg@stud.uni-regensburg.de | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/jonas.jpg) |
 | Jennifer Anette Reber      | jennifer-anette.reber@stud.uni-regensburg.de      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/jenny.jpg) |
-| Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      |    $1 |
+| Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      |     |
 | Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |  ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/alia.jpg)|
 
 
