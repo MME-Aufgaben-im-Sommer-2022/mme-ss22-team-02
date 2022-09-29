@@ -1,15 +1,19 @@
 
 ## Shop-For-Me
-
+<br>
+  
+ShopForMe bietet eine Platform für Menschen einer Gemeinde, Freunde, Nachbarn, et cetera, um eine Koordination  innerhalb selbst erstellter Gruppen zur gegenseitigen Lebensmittelbesorgung zu ermöglichen zur Einsparung von Ressourcen.  
+<br>
 Die wichtigsten Features unseres Projekts sind die Loginseite (OAuth-2 Anmeldung), die Erstellung von - und Beitritt der Communities (mittels Beitrittscode), die Erstellung und Annahme von Nutzeranfragen (im Sinne von Lebensmittelanforderungen und das Besorgen dieser) und die Chatfunktion, in welcher die User sich bezüglich der "Bestellung" absprechen können. Zudem haben wir einen augenfreundlichen Dark-Mode implementiert.  
 Die intendierten Zielgruppen sind zeitlich eingeschränkte Personen, die sich beispielsweise innerhalb eines Ortes (zum Beispiel: Anlegen einer Community, welche den Ortsnamen enthält) untereinander absprechen können, wer welche Lebensmittel wann einholt, oder auch Studenten, die sich hierdurch zeitliche und finanzielle Ressourcen (e.g. Spritkosten, Wegkosten) einsparen können. (Beispiel: Wohnen im selben Wohnheim)  
 Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von den üblichen Kommunikationskanälen (Facebook, Whatsapp, et cetera) unterscheidet und somit einen eigenen,  Kommunikationskanal für die Organisation und Beschaffung von Lebensmitteln bereitstellt. Durch die minimalistische Auswahl der Funktionen bietet man den Nutzern der Anwendung eine klare und intuitive Möglichkeit zur einfachen Absprache innerhalb einer Community untereinander an, welche nur "ausgewählten" Personen (User verschickt "Einladungscode") zur Verfügung gestellt wird.
 
 ## Beschreibung & Anleitung
-
+<br>
+  
 [Demo-Video ShopForMe](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/videos/shopForMeVideo.mp4)  
-
-
+<br>
+  
 | Funktion        | Verwendung           | Screenshot  |
 | ------------- |:-------------:| :-----:|
 | Login     | Um die Anwendung wie intendiert zu nutzen, kann der User sich mit Klick auf die entsprechenden Buttons der Login-Seite anmelden. Dazu wird ein bereits vorhandenes Konto bei Google, Facebook oder GitHub benötigt, über welches man sich dann mit ShopForMe verbindet.    | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/login.png) |
@@ -22,13 +26,14 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 | Anfrage annehmen/abbrechen      | Ist eine Anfrage in einer Gruppe veröffentlicht worden, kann diese von anderen Teilnehmern der Gruppe gesehen und angenommen werden, ebenso ist es möglich diese abzubrechen von Bringer sowie Empfänger. Innerhalb der Anfrage kann man auf mehr klicken um alle Artikel angezeit zu bekommen.      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/openRequest.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/myRequest.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/myRequest2.png) ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/appScreenshots/allArticles.png)  |
 
 ## Team
-
+<br>
+  
 | Name        | E-Mail-Adresse           | Foto  |
 | ------------- |:-------------:| -----:|
 | Jonas Freyberg     | Jonas.Freyberg@stud.uni-regensburg.de | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/jonas.jpg) |
 | Jennifer Anette Reber      | jennifer-anette.reber@stud.uni-regensburg.de      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/jenny.jpg) |
-| Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      |     |
+| Johannes Jumpertz | johannes.jumpertz@stud.uni-regensburg.de      | ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/johannes.png)    |
 | Alwina Bitter | alwina.bitter@stud.uni-regensburg.de      |  ![](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/blob/firebase/.docs/images/alia.jpg)|
-
-
+<br>
+  
 Die Anwendung wurde gemeinsam in Coding-Sessions erarbeitet, welches eine genaue Aufteilung der erstallten Aufgabenbereiche der Teammitglieder erschwert.
