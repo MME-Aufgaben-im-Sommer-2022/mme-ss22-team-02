@@ -132,8 +132,6 @@ function CreateCommunity({back, close}) {
     </Box>;
 }
 
-
-
 function JoinCommunity({back, close}) {
 
     const bride = useApiClient();

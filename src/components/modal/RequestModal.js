@@ -7,7 +7,6 @@ import ArticleList from "../../authenticated/community/requests/ArticleList";
 import {useParentCommunity} from "../../utils/context-utilities";
 import LoadingScreen from "../../utils/LoadingScreen";
 
-
 const style = {
 
     position: "absolute",

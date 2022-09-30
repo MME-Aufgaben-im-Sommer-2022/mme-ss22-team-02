@@ -26,7 +26,6 @@ export default function CommunityWrapper({communityId}) {
     const community = useCommunity(communityId);
     const [toggle, setToggle] = useState(false);
     useEvent(community, "loaded", () => {
-        console.log("invoked");
         setToggle(!toggle);
     });
 

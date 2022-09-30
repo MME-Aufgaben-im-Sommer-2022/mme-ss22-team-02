@@ -8,6 +8,11 @@ Die wichtigsten Features unseres Projekts sind die Loginseite (OAuth-2 Anmeldung
 Die intendierten Zielgruppen sind zeitlich eingeschränkte Personen, die sich beispielsweise innerhalb eines Ortes (zum Beispiel: Anlegen einer Community, welche den Ortsnamen enthält) untereinander absprechen können, wer welche Lebensmittel wann einholt, oder auch Studenten, die sich hierdurch zeitliche und finanzielle Ressourcen (e.g. Spritkosten, Wegkosten) einsparen können. (Beispiel: Wohnen im selben Wohnheim)  
 Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von den üblichen Kommunikationskanälen (Facebook, Whatsapp, et cetera) unterscheidet und somit einen eigenen,  Kommunikationskanal für die Organisation und Beschaffung von Lebensmitteln bereitstellt. Durch die minimalistische Auswahl der Funktionen bietet man den Nutzern der Anwendung eine klare und intuitive Möglichkeit zur einfachen Absprache innerhalb einer Community untereinander an, welche nur "ausgewählten" Personen (User verschickt "Einladungscode") zur Verfügung gestellt wird.  
 Alle aktuell implementierten Funktionen sind im folgenden Abschnitt beschrieben.  
+<br>
+- [Deployment](https://shopforme.software-engineering.education/)  
+<br>
+- [Release-Version]()  
+<br>
 
 ## Beschreibung & Anleitung
 <br>
