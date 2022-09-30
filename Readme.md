@@ -10,9 +10,7 @@ Die Motivation hierfür ist das Schaffen einer zentralen Anwendung, die sich von
 Alle aktuell implementierten Funktionen sind im folgenden Abschnitt beschrieben.  
 <br>
 - [Deployment](https://shopforme.software-engineering.education/)  
-<br>
 - [Release-Version](https://github.com/MME-Aufgaben-im-Sommer-2022/mme-ss22-team-02/releases/tag/FinalRelease)  
-<br>
 
 ## Beschreibung & Anleitung
 <br>
