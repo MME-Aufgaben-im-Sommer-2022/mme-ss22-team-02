@@ -50,18 +50,18 @@ export default function RequestModal({open, onClose}) {
     return (
         <StyledModal open={open} onClose={onClose} sx={style}>
                 <Typography id="modal-title" variant="h6">
-                    New Request
+                    Neue Anfrage
                 </Typography>
                 <Typography id="modal-description" variant="subtitle2">
-                    Add the articles you need to your request.
+                    Füge die gewünschten Artikel deiner Anfrage hinzu.
                 </Typography>
                 <div style={{marginTop: 10}}>
                     <ArticleList articles={articles} setArticles={setArticles}/>
                 </div>
                 <Stack style={{marginTop: 220}} spacing={35} direction="row">
-                    <Button variant={"outlined"} onClick={onClose} size="small">Cancel</Button>
-                    <Button disabled={articles.length === 0} variant={"outlined"} onClick={addRequest} size="small">Publish</Button>
+                    <Button variant={"outlined"} onClick={onClose} size="small">Zurück</Button>
+                    <Button disabled={articles.length === 0} variant={"outlined"} onClick={addRequest} size="small">Absenden</Button>
                 </Stack>
         </StyledModal>
     );
-};
+}

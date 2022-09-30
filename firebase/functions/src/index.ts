@@ -7,6 +7,7 @@ import CloseRequest from "./CloseRequest";
 import OnJoin from "./OnJoin";
 import SendMessage from "./SendMessage";
 import SaveProfile from "./SaveProfile";
+import LeaveRequest from "./LeaveRequest";
 
 
 exports.createCommunity = CreateCommunity;
@@ -18,3 +19,4 @@ exports.closeRequest = CloseRequest;
 exports.onJoin = OnJoin;
 exports.sendMessage = SendMessage;
 exports.saveProfile = SaveProfile;
+exports.leaveRequest = LeaveRequest;
